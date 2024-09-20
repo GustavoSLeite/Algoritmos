@@ -1,0 +1,55 @@
+<!-- 10. Crie um programa o qual:  
+
+a) Solicite a idade e o salário do usuário  
+
+b) Ao clicar em "Analisar situação", deve aparecer uma dessas frases abaixo do botão...  
+
+c) Menor de idade e liso, caso a idade seja menor que 18 e o salário for menor que 2500.  
+
+d) Menor de idade e ostentação, caso a idade seja menor que 18 e o salário for a partir de 2500.  
+
+e) Maior de idade e liso, caso a idade for a partir de 18 e o salário for menor que 3500.  
+
+f) Maior de idade e ostentação, caso a idade for a partir de 18 e o salário for a partir de 3500 até 7000.  
+
+g) Maior de idade e mega ostentação, caso a idade for a partir de 18 e o salário for maior que 7000.  
+
+   -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 6 - Ex10</title>
+</head>
+
+<body>
+    Digite sua idade: <input type="number" id="ipt_idade">
+    Digite seu salário: <input type="number" id="ipt_salario">
+
+    <button onclick="analisarMoney()">Analisar situação</button>
+
+    <p id="mensagem"></p>
+
+</html>
+
+<script>
+    function analisarMoney() {
+        var idade = Number(ipt_idade.value)
+        var salario = Number(ipt_salario.value)
+
+        if (idade < 18 && salario < 2500) {
+            mensagem.innerHTML = `Menor de idade e Liso!`
+        } else if (idade < 18 && salario >= 2500) {
+            mensagem.innerHTML = `Menor de idade e ostentação!`
+        } else if (idade >= 18 && salario < 3500) {
+            mensagem.innerHTML = ` Maior de idade e liso`
+        } else if (idade >= 18 && salario >= 3500 && salario <= 7000) {
+            mensagem.innerHTML = `Maior de idade e ostentação`
+        } else {
+            mensagem.innerHTML = `Maior de idade e mega ostentação,`
+        }
+    }
+</script>

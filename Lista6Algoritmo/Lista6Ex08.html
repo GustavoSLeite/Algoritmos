@@ -1,0 +1,47 @@
+<!-- 8. Crie um programa que simula um pequeno sistema de login assim:  
+
+a) Pergunte o login do usuário; 
+b) Pergunte a senha do usuário; 
+
+c) Pergunte o código de segurança do usuário (é como se fosse uma segunda senha, só isso)  
+
+d) Ao clicar em "Entrar": 
+
+   Caso o login seja "SPTech" e a senha seja "digital" e o código de segurança seja "123", exibir um alert com a frase "Usuário autenticado com sucesso" 
+
+   Caso contrário, exibir um alert com "Falha na autenticação"  
+
+   -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 6 - Ex08</title>
+</head>
+
+<body>
+    Insira seu login: <input type="text" id="iptLogin">
+    Insira sua senha: <input type="password" id="ipt_passwd">
+    Insira seu código de segurança: <input type="password" id="ipt_codigo">
+
+    <button onclick="entrarConta()">Entrar</button>
+</body>
+
+</html>
+
+<script>
+    function entrarConta() {
+        var login = iptLogin.value
+        var password = ipt_passwd.value
+        var codigo = ipt_codigo.value
+
+        if (login == "SPTech" && password == "digital" && codigo == "123") {
+            alert("Usuário autenticado com sucesso")
+        } else {
+            alert("Falha na autenticação")
+
+        }
+    }
+</script>
