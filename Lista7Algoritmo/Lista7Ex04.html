@@ -28,13 +28,12 @@ b) Ao clicar num botão "Analisar compra", exiba uma dessa mensagens:
 </head>
 
 <body>
-    insira o modo de pagamento:
-    Dinheiro <input id="ipt_dinheiro" type="checkbox">
-    Cartão de débito <input type="checkbox">
-    Cartão de crédito <input type="checkbox">
-    Boleto <input type="checkbox">
+    insira o modo de pagamento (Dinheiro, Débito, Crédito, Boleto): <input type="text" id="ipt_pagamento">
+
 
     <button onclick="analisarCompra()">Analisar compra</button>
+
+    <p id="mensagem"></p>
 
 
 </body>
@@ -43,10 +42,15 @@ b) Ao clicar num botão "Analisar compra", exiba uma dessa mensagens:
 
 <script>
     function analisarCompra() {
-        var dinheiro = ipt_dinheiro.value
-        var pagamento = 
+        var formaPagamento = ipt_pagamento.value
 
-        if()
-        
+        if (formaPagamento == "Dinheiro" || formaPagamento == "Débito") {
+
+            mensagem.innerHTML = "Você terá que pagar a vista"
+
+        } else {
+            mensagem.innerHTML = "Pagamento poderá ser parcelado"
+        }
+
     }
 </script>
