@@ -1,0 +1,42 @@
+<!-- 1. Crie um programa o qual:   
+
+a) Solicite a idade do usuário   
+
+b) Deve haver 2 botões abaixo: "Aposentadoria Homem" e "Aposentadoria Mulher"   
+
+c) No primeiro botão, calcule e exiba um alert com o tempo que falta para se aposentar  caso seja homem, considerando que um homem se aposenta com 70 anos   
+
+d) No segundo botão, calcule e exiba um alert com o tempo que falta para se aposentar caso seja mulher, considerando que uma mulher se aposenta com 60 anos -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 3 | Ex01</title>
+</head>
+<body>
+    Digite sua idade: <input type="number" id="input_idade">
+    <button onclick="calcularHomem()">Aposentadoria Homem</button>
+    <button onclick="calcularMulher()">Aposentadoria Mulher</button>
+    
+</body>
+</html>
+
+<script>
+    function calcularHomem() {
+        var idade = Number(input_idade.value)
+        var aposentadoriaHomem = 70
+        var resultadoHomem = aposentadoriaHomem - idade
+
+        alert(`Você tem ${idade} anos, portanto, faltam ${resultadoHomem} anos para você pode se aposentar!`)
+    }
+
+    function calcularMulher() {
+        var idade = Number(input_idade.value)
+        var aposentadoriaMulher = 60
+        var resultadoMulher = aposentadoriaMulher - idade
+
+        alert(`Você tem ${idade} anos, portanto, faltam ${resultadoMulher} anos para você pode se aposentar!`)
+    }
+</script>

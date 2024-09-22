@@ -1,0 +1,31 @@
+<!-- 3. Um estudante recebeu o Bilhete Único de estudante pela primeira vez e deseja saber quanto vai economizar por mês. O valor para estudante é metade do valor da passagem. Crie um programa que:   
+
+a) Pergunte a ele o valor da passagem   
+
+b) Pergunte a ele quantas viagens fará por mês   
+
+c) Ao clicar num botão "Ver economia", deve ver um alerta com uma frase como esta: "Você economizará R$X por mês"  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 3 | Ex03</title>
+</head>
+<body>
+    Digite o Valor da Passagem: <input type="number" id="input_valor">
+    Digite a quantidade de viagens você fará ao mês: <input type="number" id="input_qtd">
+    <button onclick="verEconomia()">Ver economia</button>
+</body>
+</html>
+
+<script>
+    function verEconomia() {
+        var valorPassagem = Number(input_valor.value)
+        var qtdViagens = Number(input_qtd.value)
+        economia = valorPassagem / 2 * qtdViagens
+
+        alert(`Você economizará R$${economia} por mês.`)
+    }
+</script>

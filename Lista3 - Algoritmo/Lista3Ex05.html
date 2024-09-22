@@ -1,0 +1,36 @@
+<!-- 5. Na faculdade SPTech o aluno tem 2 notas: A da "avaliação continuada" e a da "avaliação semestral". A média final é a soma simples entre 40% da "continuada" e 60% da "semestral". Assim, para ajudar um aluno para saber o quanto precisa para passar e estagiar em empresas como Easynvest, C6Bank, Tivit, Banco Safra, Deloitte, HP etc, crie um programa que:   
+
+a) Solicite a nota que ele tirou na "continuada" e na "semestral"   
+
+b) Solicite o nome do aluno   
+
+c) Calcule sua média   
+
+d) Exiba uma frase como esta "A média de NOME será de MEDIA". Onde NOME é o valor informado em b) e MEDIA, o valor calculado em c) -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 3 | Ex05</title>
+</head>
+<body>
+    Digite sua primeira nota: <input type="number" id="input_n1">
+    Digite sua segunda nota: <input type="number" id="input_n2">
+    Digite seu nome: <input type="text" id="input_nome">
+    <button onclick="verMedia()">Ver Média</button>
+
+</body>
+</html>
+
+<script>
+    function verMedia() {
+        var avaliacaoContinuada = Number(input_n1.value)
+        var avaliacaoSemestral = Number(input_n2.value)
+        var nomeAluno = input_nome.value
+        var mediaFinal = (avaliacaoContinuada * 0.4) + (avaliacaoSemestral * 0.6) / 2
+
+        alert(`A média de ${nomeAluno} será de ${mediaFinal}`)
+    }
+</script>

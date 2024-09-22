@@ -1,0 +1,67 @@
+<!-- 6. Crie um programa que:   
+
+ a) Solicite 2 números ao usuário   
+
+b) tenha um botão para cada operação aritmética. Ao clicar em algum deles, exibir na página uma dessas frases:   
+
+   - A soma entre X e Y é Z   
+
+   - A diferença entre X e Y é Z   
+
+   - O produto entre X e Y é Z   
+
+   - A razão entre X e Y é Z -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 3 | Ex06</title>
+</head>
+
+<body>
+    Digite o primeiro Valor: <input type="number" id="input_valor1">
+    Digite o segundo Valor: <input type="number" id="input_valor2">
+    <button onclick="somar()">Somar</button>
+    <button onclick="subtrair()">Subtrair</button>
+    <button onclick="multiplicar()">Multiplicar</button>
+    <button onclick="dividir()">Dividir</button>
+</body>
+
+</html>
+
+<script>
+    function somar() {
+        var valor1 = Number(input_valor1.value)
+        var valor2 = Number(input_valor2.value)
+        var resultadoSoma = valor1 + valor2
+
+        alert(`A soma entre ${valor1} e ${valor2} é ${resultadoSoma}`)
+    }
+
+    function subtrair() {
+        var valor1 = Number(input_valor1.value)
+        var valor2 = Number(input_valor2.value)
+        var resultadoSubtracao = valor1 - valor2
+
+        alert(`A diferença entre ${valor1} e ${valor2} é ${resultadoSubtracao}`)
+    }
+
+    function multiplicar() {
+        var valor1 = Number(input_valor1.value)
+        var valor2 = Number(input_valor2.value)
+        var resultadoMultiplicacao = valor1 * valor2
+
+        alert(`O produto entre ${valor1} e ${valor2} é ${resultadoMultiplicacao}`)
+    }
+
+    function dividir() {
+        var valor1 = Number(input_valor1.value)
+        var valor2 = Number(input_valor2.value)
+        var resultadoDivisão = valor1 / valor2
+
+        alert(`A razão entre ${valor1} e ${valor2} é ${resultadoDivisão}`)
+    }
+</script>
