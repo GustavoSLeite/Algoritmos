@@ -1,0 +1,33 @@
+<!-- 2. Todo mundo adora pizza! Existem para todos os gostos! Crie um programa que ajude um grupo de amigos a saber quanto uma pizza vai custar para cada amigo.  
+
+a) Solicite o valor da pizza e a quantidade de amigos que vão dividir o valor.  
+
+b) Ao clicar num botão "#lovePizza", exiba um alerta com a frase  
+
+     "Cada um dos X amigos vai pagar R$Y"  
+
+Onde X é a quantidade de amigos e Y é o resultado do cálculo que seu programa fará   -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 3 | Ex 02</title>
+</head>
+<body>
+    Valor da Pizza <input type="number" id="input_valor">
+    Quantidade de pessoas que vão dividir o valor <input type="number" id="input_qtd">
+    <button onclick="dividir()">#lovePizza</button>
+    
+</body>
+</html>
+<script>
+    function dividir() {
+        var quantidade = input_qtd.value;
+        var valorPizza = input_valor.value;
+        var totalAPagar = valorPizza / quantidade;
+
+        alert(`Cada um dos ${quantidade} amigos vai pagar R$${totalAPagar}`)
+    }
+</script>
