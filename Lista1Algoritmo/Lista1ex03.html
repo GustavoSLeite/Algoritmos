@@ -1,0 +1,34 @@
+<!-- 
+ 3. Crie uma página que solicite ao usuário que digite o nome do time que torce e quantos títulos o clube dele possui.  
+
+a) Deve haver um botão com o texto "Amo meu time".  
+
+b) Ao clicar no botão, deve aparecer uma frase como está numa caixinha de alerta:  
+
+     "O time X tem Y títulos" - Onde X e Y são os valores que o usuário digitou, claro  
+-->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 1 | Ex03 </title>
+</head>
+<body>
+    Time de Futebol <input type="text" id="input_time">
+    Quantidade de títulos <input type="number" id="input_titulo">
+    
+    <button onclick="verificar()">Amo meu time</button>
+</body>
+</html>
+<script>
+function verificar() {
+    alert("O time "
+        + input_time.value 
+        + " tem "
+        + input_titulo.value
+        + " títulos"
+    )
+}
+</script>

@@ -1,0 +1,45 @@
+<!-- 
+ 4. Crie uma página que solicite ao usuário que digite o nome da rua/avenida/vila e o número da casa onde mora.  
+
+a) Deve haver um botão com o texto "Onde eu moro".  
+
+b) Ao clicar no botão, deve aparecer uma frase como esta na página:  
+
+     "Seu logradouro é X" - Onde X é o valor que o usuário digitou no primeiro campo  
+
+c) Na sequência da mensagem acima, deve aparecer:  
+
+     "O número do seu logradouro é Y"  - Onde Y é o valor que o usuário digitou no segundo campo  
+
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 1 | Ex04 </title>
+</head>
+
+<body>
+    Rua <input type="text" id="input_rua">
+    Avenida <input type="text" id="input_avenida">
+    Vila <input type="text" id="input_vila">
+    Número Residencial <input type="number" id="input_numero">
+
+    <button onclick="verification()">Onde eu moro</button>
+
+</body>
+
+</html>
+<script>
+    function verification() {
+        alert(" Seu logradouro é "
+            + input_rua.value
+        )
+        alert(" O número do seu logradouro é "
+            + input_avenida.value
+        )
+    }
+</script>
