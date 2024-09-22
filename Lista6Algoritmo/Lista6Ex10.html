@@ -26,8 +26,8 @@ g) Maior de idade e mega ostentação, caso a idade for a partir de 18 e o salá
 </head>
 
 <body>
-    Digite sua idade: <input type="number" id="ipt_idade">
-    Digite seu salário: <input type="number" id="ipt_salario">
+    Digite sua idade: <input type="number" id="ipt_idade"> 
+    Digite seu salário: <input type="number" id="ipt_salario"> 
 
     <button onclick="analisarMoney()">Analisar situação</button>
 
@@ -41,7 +41,7 @@ g) Maior de idade e mega ostentação, caso a idade for a partir de 18 e o salá
         var salario = Number(ipt_salario.value)
 
         if (idade < 18 && salario < 2500) {
-            mensagem.innerHTML = `Menor de idade e Liso!`
+            mensagem.innerHTML = `Menor de idade e liso!`
         } else if (idade < 18 && salario >= 2500) {
             mensagem.innerHTML = `Menor de idade e ostentação!`
         } else if (idade >= 18 && salario < 3500) {
@@ -49,7 +49,7 @@ g) Maior de idade e mega ostentação, caso a idade for a partir de 18 e o salá
         } else if (idade >= 18 && salario >= 3500 && salario <= 7000) {
             mensagem.innerHTML = `Maior de idade e ostentação`
         } else {
-            mensagem.innerHTML = `Maior de idade e mega ostentação,`
+            mensagem.innerHTML = `Maior de idade e mega ostentação`
         }
     }
 </script>
