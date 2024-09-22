@@ -1,0 +1,51 @@
+<!-- 9)Crie um programa que ajude a gerência de uma empresa a avaliar se a meta de vendas foi atingida e o percentual de sucesso.
+
+a) Solicite a meta de vendas e o total de vendas realizadas 
+
+b) Ao clicar em "Analisar Vendas", calcule o percentual de sucesso com a fórmula: percentual = (vendas_realizadas / meta) * 100 
+
+c) Exiba uma das seguintes mensagens:
+
+  "Meta não atingida, atendeu apenas X%" (onde X é o percentual, se for menor que 100%)
+
+  "Meta atingida, parabéns!" (se o percentual for igual a 100%)
+
+  "Meta ultrapassada! Ultrapassou em Y%" (onde Y é a diferença entre o percentual e 100, se for maior que 100%)
+ -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 5 - Ex09</title>
+</head>
+
+<body>
+    Insira sua meta de vendas: <input type="number" id="ipt_metaVendas">
+    Insira suas vendas realizadas: <input type="number" id="ipt_vendasRealizadas">
+
+    <button onclick="analisarVendas()">Analisar Vendas</button>
+
+    <p id="mensagem"></p>
+</body>
+
+</html>
+
+<script>
+    function analisarVendas() {
+        var metaVendas = Number(ipt_metaVendas.value)
+        var vendasRealizadas = Number(ipt_vendasRealizadas.value)
+        var percentual = (vendasRealizadas / metaVendas) * 100
+        var diferencaPercentual = percentual - 100
+
+        if (percentual == 100) {
+            mensagem.innerHTML = "Meta atingida, parabéns!"
+        } else if (percentual < 100) {
+            mensagem.innerHTML = `Meta não atingida, atendeu apenas ${percentual}%`
+        } else {
+            mensagem.innerHTML = `Meta ultrapassada! Ultrapassou em ${diferencaPercentual}%`
+        }
+
+    }
+</script>

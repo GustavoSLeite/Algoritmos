@@ -1,0 +1,53 @@
+<!--  
+
+4. (ENTREGAR) Uma nutróloga deseja um programa que ajude-a no processo de avaliação do peso de crianças de 5 anos.
+
+Seu programa, ao ler o peso da criança, deve exibir uma dessas frases:
+
+Abaixo do peso (se peso até 13.5kg) 
+
+Acima do peso (se peso maior que 21.2kg) 
+
+Peso na média (se peso maior que 13.5kg até 21.2kg) 
+
+Peso perfeito (se o peso for exatamente 18.3kg)  -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 5 - Ex04</title>
+</head>
+
+<body>
+    Insira seu peso: <input type="number" id="ipt_peso">
+
+    <button onclick="analisarPeso()">Analisar peso</button>
+
+    <p id="mensagem"></p>
+
+</body>
+
+</html>
+
+<script>
+    function analisarPeso() {
+        var peso = Number(ipt_peso.value)
+
+        if (peso <= 13.5) {
+            mensagem.innerHTML = "Abaixo do peso"
+
+        } else if (peso == 18.3) {
+            mensagem.innerHTML = "Peso perfeito"
+
+        } else if (peso <= 21.2) {
+            mensagem.innerHTML = "Peso médio"
+
+        } else {
+            mensagem.innerHTML = "Acima do peso"
+
+        }
+    }
+</script>

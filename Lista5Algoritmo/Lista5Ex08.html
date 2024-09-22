@@ -1,0 +1,54 @@
+<!--   
+
+8. Crie um programa o qual: 
+
+a) Pergunte ao usuário qual sua meta de economia; 
+
+b) Pergunte ao usuário quanto tem guardado; 
+
+c) Ao clicar em "Analisar economia"... 
+
+d) Caso a meta tenha sido alcançada, exibir, abaixo do botão, a frase “Parabéns, meta alcançada!”.  
+
+e) Caso a meta tenha sido ultrapassada, exibir a frase anterior e também a frase “Meta ultrapassada em X” (onde X é a diferença entre a economia e a meta) 
+
+f) Caso a meta ainda não tenha sido alcançada, exibir, abaixo do botão, a frase “Força! Ainda em busca da meta! Falta X” (onde X é a diferença entre a meta e a economia) 
+ -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 5 - Ex08</title>
+</head>
+
+<body>
+    Insira sua meta de economia: <input type="number" id="ipt_metaEconomia">
+    Insira quanto você tem guardado: <input type="number" id="ipt_dinheiroGuardado">
+
+    <button onclick="analisarEconomia()">Analisar economia</button>
+
+    <p id="mensagemEconomia"></p>
+</body>
+
+</html>
+
+<script>
+    function analisarEconomia() {
+        var meta = Number(ipt_metaEconomia.value)
+        var economia = Number(ipt_dinheiroGuardado.value)
+        var diferenca = dinheiroGuardado - metaEconomia
+
+        if (economia >= meta) {
+            mensagemEconomia.innerHTML = "Parabéns, meta alcançada!"
+
+        } else if (economia > meta) {
+            mensagemEconomia.innerHTML = `Meta ultrapassada em ${diferenca} reais a mais!`
+        }
+        if (economia < meta) {
+            mensagemEconomia.innerHTML = `Força! Ainda em busca da meta! Falta ${diferenca}`
+        }
+    }
+</script>
