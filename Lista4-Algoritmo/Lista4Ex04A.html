@@ -1,0 +1,49 @@
+<!-- 4. Um grupo de amigos costuma se reunir na casa de um deles para comer pizza. Só que eles têm um trato de que o valor da pizza, quando dividido entre os amigos, não deve passar de 20,00 por amigo. Ajude-os criando um programa o qual: 
+
+a) Pergunte o valor da pizza 
+
+b) Pergunte a quantidade de amigos reunidos 
+
+c) Ao clicar em "Rola a pizza?", calcule e exiba o valor que cada amigo vai pagar na pizza com uma frase na página como esta "Cada amigo vai pagar R$X pela pizza" 
+
+d) Somente caso o valor por amigo passe de R$20,00, exiba também a frase "Deu ruim! Pizza muito cara!" 
+
+TENTE ALTERAR O STYLE VIA JAVASCRIPT COM ‘id.style.color’ 
+
+4a. Refaça a questão anterior de tal forma que a frase do item d) apareça na cor de letra vermelha com itálico e negrito.   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 4 | Ex04</title>
+</head>
+<body>
+    Valor da Pizza: <input type="number" id="input_valor">
+    Quantidade de amigos reunidos: <input type="number" id="input_qtdAmigos">
+
+    <button onclick="rolaPizza()">Rola a pizza?</button>
+
+    <div id="div_mensagemPizza"></div>
+</body>
+</html>
+
+<script>
+    function rolaPizza(){
+        var valorPizza = Number(input_valor.value)
+        var qtdAmigos = Number(input_qtdAmigos.value)
+        var resultado = valorPizza / qtdAmigos
+
+        div_mensagemPizza.innerHTML = `Cada amigo vai pagar R$${resultado} pela pizza`
+
+        if(resultado > 20){
+            var mensagemDeuRuim = "Deu ruim! Pizza muito cara!"
+
+            div_mensagemPizza.innerHTML += `<br><b style="color: red">${mensagemDeuRuim}</b>`
+        }
+
+
+    }
+</script>
+
+<!-- <b style="color: red">Teste</b> -->

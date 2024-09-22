@@ -1,0 +1,42 @@
+<!-- 8. Crie um programa que controle o peso médio dentro de um elevador:  
+
+a) Solicite a quantidade de homens que entraram no elevador 
+
+b) Solicite a quantidade de mulheres que entraram no elevador 
+
+c) Ao clicar em "Analisar peso", calcule o peso estimado sendo: homens x 80 somado com mulheres x 60 
+
+d) Exiba na página a mensagem "Este elevador suporta 800 Kg e o peso estimado desta lotação é de XXXkg"  
+
+e) Se o peso estimado for maior que 800, exibir também a mensagem "Será necessário que alguém desça para que o elevador se movimente" - na cor azul.   -->]
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 4 | Ex08</title>
+</head>
+
+<body>
+    Quantidade de homens que entraram no elevador: <input type="number" id="input_qtdHomens">
+    Quantidade de mulheres que entraram no elevador: <input type="number" id="input_qtdMuleheres">
+
+    <button onclick="calculaPeso()">Analisar peso</button>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    function calculaPeso() {
+        var qtdHomens = Number(input_qtdHomens.value)
+        var qtdMulheres = Number(input_qtdMulheres.value)
+        var pesoEstimado = (qtdHomens * 80) + (qtdMulheres * 60)
+
+        div_mensagem.innerHTML = `Este elevador suporta 800 Kg e o peso estimado desta lotação é de ${pesoEstimado} kg`
+
+
+    }
+</script>

@@ -1,0 +1,44 @@
+<!-- 
+3. Paty é muito estudiosa e sua meta é sempre ser uma aluna fora de série. Na faculdade onde estuda, os "fora de série" são os alunos com média acima de 9,4. Portanto, para ajudá-la, crie um programa o qual:  
+
+a) Pergunte o valor de 3 notas  
+
+b) Ao clicar num botão "Analisar desempenho", calcule a média entre as notas e exiba na tela a frase "Sua média foi de X", onde X é a média calculada  
+
+c) Somente caso a média for acima de 9,4 exibir também a frase "Parabéns, você é fora de série!"   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 4 | Ex03</title>
+</head>
+<body>
+    Digite a primeira nota: <input type="number" id="input_n1">
+    Digite a segunda nota: <input type="number" id="input_n2">
+    Digite a terceira nota: <input type="number" id="input_n3">
+
+    <button onclick="verMedia()">Analisar desempenho</button>
+
+    <div id="div_mensagemMedia"></div>
+</body>
+</html>
+
+<script>
+    function verMedia(){
+        var nota1 = Number(input_n1.value)
+        var nota2 = Number(input_n2.value)
+        var nota3 = Number(input_n3.value)
+        var media = (nota1 + nota2 + nota3) / 3
+
+        div_mensagemMedia.innerHTML = `Sua média foi de ${media}`
+
+        if(media > 9.4){
+            var mensagemAdicional = "Parabéns, você é fora de série!"
+            
+            div_mensagemMedia.innerHTML += `<br>${mensagemAdicional}`
+        }
+
+
+    }
+</script>

@@ -1,0 +1,41 @@
+<!-- 1. Crie um programa que:  
+
+a) Pergunte ao usuário sua idade.  
+
+b) Ao clicar num botão "Ir pra festa":  
+
+   b1) Caso a idade seja menor que 18, deve aparecer um alert com a frase "Pedir permissão pro responsável" 
+
+   b2) Sempre vai aparecer um alert com a palavra "#partiuFesta" ao final  
+
+OBS: caso tenha 18 anos ou mais, deve somente a segunda mensagem.  -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 4 | Ex01</title>
+</head>
+<body>
+    Digite sua idade: <input type="number" id="input_idade">
+
+    <button onclick="verificarFesta()">Ir pra festa</button>
+
+
+</body>
+</html>
+
+<script>
+    function verificarFesta(){
+        var idadeUsuario = Number(input_idade.value)
+
+        if( idadeUsuario < 18){
+            alert("Pedir permissão pro responsável.")
+        }
+        if(idadeUsuario >= 18){
+            alert("#partiuFesta")
+        }
+        
+    }
+</script>
