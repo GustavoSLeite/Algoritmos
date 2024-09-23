@@ -1,0 +1,73 @@
+<!-- 
+(ENTREGAR) 6. Crie um programa que avalie o desempenho de um aluno, o qual: 
+
+a) Solicite a nota e a frequência do aluno 
+
+b) Ao clicar em "Analisar aluno", faça as seguintes ações... 
+
+c) Caso a nota não seja válida, ou seja, caso não esteja entre 0 e 10, exiba um alert "Onde já se viu nota <0 ou >10?!" e limpe qualquer outro resultado que já estiver aparecendo na tela 
+
+d) Caso a frequência não seja válida, ou seja, caso não esteja entre 0 e 100, exiba um alert "Onde já se viu frequência <0 ou >100?!" e limpe qualquer outro resultado que já estiver aparecendo na tela 
+
+e) Caso a nota estiver entre 0 e menor que 6, exiba na tela essa frase: "Aluno ficou abaixo da média" 
+
+f) Caso a nota estiver entre 6 e 8, exiba na tela essa frase: "Aluno ficou na média" 
+
+g) Caso a nota estiver entre mais que 8 e 10, exiba na tela essa frase: "Aluno acima da média" 
+
+h) Caso o aluno tiver frequência a partir de 75, exiba na tela "Aluno aprovado por frequência" ou "Aluno reprovado por frequência", em caso contrário 
+
+   -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 8 - Ex06</title>
+</head>
+
+<body>
+    <h1>Análise do desempenho do aluno</h1>
+
+    Digite sua nota: <input type="number" id="ipt_nota">
+    Digite sua frequência: <input type="number" id="ipt_freq">
+
+    <button onclick="analisarAluno()">Analisat aluno</button>
+
+</body>
+
+</html>
+
+<script>
+    function analisarAluno() {
+        var nota = Number(ipt_nota.value)
+        var freq = Number(ipt_freq.value)
+
+        if (nota < 0 || nota > 10) {
+
+            alert("Onde já se viu nota < 0 ou > 10?!")
+
+        } else if (freq < 0 || freq > 100) {
+
+            alert("Onde já se viu frequência <0 ou >100?!")
+        } else if (nota >= 0 && nota < 6) {
+            
+            alert("Aluno ficou abaixo da média")
+
+        } else if (nota >= 6 && nota <= 8) {
+
+            alert("Aluno ficou na média")
+        } else if (nota >= 8 && nota <= 10) {
+
+            alert("Aluno acima da média")
+        } else if (freq >= 75) {
+
+            alert("Aluno aprovado por frequência")
+        } else {
+
+            alert("Aluno reprovado por frequência")
+
+        }
+    }
+</script>

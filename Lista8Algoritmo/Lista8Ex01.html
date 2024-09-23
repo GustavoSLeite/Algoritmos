@@ -41,10 +41,22 @@ b) Ao clicar num botão "Avaliar atendimento", pode uma dessas frases abaixo do 
 
         } else if (notaAtendimento >= 0 && notaAtendimento < 5) {
             avaliacao.innerHTML = "Não aprovado"
-        } else if (notaAtendimento == 5 || notaAtendimento == 6) {
+        } else if (notaAtendimento >= 5 || notaAtendimento <= 6) {
             avaliacao.innerHTML = "Neutro"
         } else if (notaAtendimento > 6) {
             avaliacao.innerHTML = "Aprovado"
         }
     }
 </script>
+
+<!-- function avaliarAtendimento() {  
+    const nota = parseInt(prompt("Digite a nota para o atendimento (0 a 10): "));  
+    
+    if (nota < 0 || nota > 10) {  
+     document.getElementById("resultado").innerHTML = "Nota inválida";  
+    } else if ((nota >= 0 && nota < 5) || (nota >= 5 && nota <= 6)) {  
+     document.getElementById("resultado").innerHTML = "Não aprovado";  
+    } else {  
+     document.getElementById("resultado").innerHTML = "Aprovado";  
+    }  
+  } -->

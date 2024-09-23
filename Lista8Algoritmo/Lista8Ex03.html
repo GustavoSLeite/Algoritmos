@@ -1,4 +1,4 @@
-<!-- 3. Crie um pequeno simulador de preço de passagem de Bilhete Único de São Paulo num programa, o qual: 
+<!-- <!-- 3. Crie um pequeno simulador de preço de passagem de Bilhete Único de São Paulo num programa, o qual: 
 
 a) Tenha uma combo para indicar o tipo de passageiro, com os itens 
 
@@ -16,58 +16,47 @@ c) Ao clicar num botão "Simular preço", considere que o preço unitário de um
             Valor da passagem escolhida: R$X,XX 
 
 d) Considere ainda que um estudante tem 50% de desconto e idoso/PNE possuem gratuidade em qualquer tipo de passagem  -->
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt">
 
 <head>
     <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>List 8 - Ex03</title>
+    <title>Lista 8 - Ex03</title>
 </head>
 
 <body>
-    <label for="tipoPassageiro">Digite o tipo de Passageiro:</label>
+    <h2>Simulador de preço de passagem</h2>
+    Tipo de passageiro:
+    <select id="sel_passageiro">
+        <option value="1">Comum</option>
+        <option value="0.5">Estudante</option>
+        <option value="0">Idoso/PNE</option>
+    </select> <br>
 
-    <select id="tipoPassageiro">
+    Tipo de passagem:
+    <select id="sel_passagem">
+        <option value="4.4">Única</option>
+        <option value="5.9">Integração</option>
+    </select> <br>
 
-        <option value="Comum">Comum</option>
-        <option value="Estudante">Estudante</option>
-        <option value="Idoso">Idoso/PNE</option>
-
-
-
-    </select>
-
-    <label for="tipoPassagem">Digite o tipo de Passagem:</label>
-
-    <select id="tipoPassagem">
-
-        <option value="PassegemUnica">Passagem única</option>
-        <option value="passagemIntegracao">`Passagem integração</option>
-
-
-
-    </select>
-
-    <button onclick="simularPreco()">Simular preço</button>
+    <button onclick="simular()">Simular preço</button>
 
     <p id="mensagem"></p>
-
 </body>
 
 </html>
 
 <script>
-    function simularPreco() {
+    function simular() {
+        var passageiro = Number(sel_passageiro.value)
+        var passagem = Number(sel_passagem.value)
 
-        var tipoPassageiro = tipoPassageiro.value
-        var tipoPassagem = tipoPassagem.value
-        var estudante = tipoPassagem / 2
 
-        if (tipoPassageiro == "Estudante" && tipoPassagem == "Passagem única") {
-            mensagem.innerHTML = `  Valor da passagem escolhida: R$${estudante} `
+        var valor = passageiro * passagem
 
-        }
-
+        mensagem.innerHTML = `Valor da passagem escolhida: R$${valor.toFixed(2)}`
     }
 </script>
