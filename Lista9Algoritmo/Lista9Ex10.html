@@ -1,0 +1,51 @@
+<!-- 10. Crie um programa o qual:   
+
+a) Solicite um intervalo crescente de valores numéricos    
+
+b) Ao clicar num botão "S2 Pares"...   
+
+c) Exiba, debaixo do botão, todos os números pares contidos no intervalo.   -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>Insira um intervalo crescente de valores númericos</h1>
+
+    Digite o número mínimo: <input type="number" id="ipt_min">
+    Digite o número máximo: <input type="number" id="ipt_max">
+
+    <button onclick="exibirPares()">S2 Pares</button>
+
+    <div id="div_mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+    function exibirPares() {
+
+        var mensagem = "";
+
+        var min = Number(ipt_min.value)
+        var max = Number(ipt_max.value)
+
+     
+
+        for (contador = min; contador <= max; contador++) {
+
+            if (contador % 2 == 0) {
+
+               mensagem += `${contador} <br>`
+            }
+        }
+        div_mensagem.innerHTML = mensagem
+    }
+</script>

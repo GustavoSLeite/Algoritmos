@@ -1,0 +1,48 @@
+<!-- 
+8. Crie um programa o qual:   
+
+a) Receba um número (tem que estar entre 0 e 200);  
+
+b) Ter um botão chamado "Viva o 7!"   
+
+c) Ao clicar nesse botão, devem aparecer todos os múltiplos de 7 entre 0 e o número informado em a)   -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Insira um número (deve estar entre 0 e 200):<input type="number" id="ipt_numero">
+
+    <button onclick="exibirMultiplosDe7()">Viva o 7!</button>
+
+    <div id="div_mensagem"></div>
+    <div id="div_mensagemErro"></div>
+
+
+</body>
+
+</html>
+
+<script>
+    function exibirMultiplosDe7() {
+        var numero = Number(ipt_numero.value)
+        div_mensagem.innerHTML = "";
+        div_mensagemErro.innerHTML = "";
+
+        for (contador = 0; contador <= numero; contador++) {
+
+            if (numero < 0 || numero > 200) {
+                div_mensagemErro.innerHTML ="Número inválido!Tente novamente."
+            } else if (contador % 7 == 0) {
+                div_mensagem.innerHTML += `${contador} <br>`
+            }
+
+        }
+    }
+</script>
