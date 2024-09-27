@@ -1,0 +1,47 @@
+<!-- 3. Refaça o programa anterior de tal forma que, antes de cada frase apareça um contador. Ex: Se a frase digitada foi “Boa Tarde” a página ficará assim:   
+
+   1. Boa tarde   
+
+   2. Boa tarde   
+
+   ...   
+
+   7. Boa tarde  
+
+   -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Digite uma frase: <input type="text" id="ipt_frase">
+
+    <button onclick="mostrar()">Mostrar Frase</button>
+
+    <div id="mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+    function mostrar() {
+
+        mensagem.innerHTML = "";
+        var frase = ipt_frase.value
+
+        for (var contador = 1; contador < 8; contador++) {
+
+            mensagem.innerHTML += `${frase} <br>`
+
+
+
+
+        }
+    }
+</script>

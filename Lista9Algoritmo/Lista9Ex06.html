@@ -1,0 +1,51 @@
+<!-- 6. Crie um programa o qual:   
+
+a) Pergunte o nome da pessoa que o usuário mais ama na vida;  
+
+b) Pergunte o quanto o usuário a ama (um número inteiro);  
+
+c) Ao clicar num botão "Expressar amor", devem aparecer, abaixo dele, N vezes (conforme o valor em b)) a frase indicada em a), como neste exemplo (considerando o nome "Lady Gaga" e que ama "3")   
+
+      1 - Lady Gaga, eu te amo! Sempre lembre disso!   
+
+      2 - Lady Gaga, eu te amo! Sempre lembre disso!   
+
+      3 - Lady Gaga, eu te amo! Sempre lembre disso!   
+
+   -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 9 - Ex06</title>
+</head>
+
+<body>
+    Digite o nome que você mais ama na vida: <input type="text" id="ipt_nome">
+    Digite o quanto você ama esse número: <input type="number" id="ipt_number">
+
+    <button onclick="expressarAmor()">Expressar amor</button>
+
+    <div id="mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    function expressarAmor() {
+
+        mensagem.innerHTML = "";
+        var nome = ipt_nome.value
+        var quantidadeAmor = Number(ipt_number.value)
+
+        for (i = 1; i <= quantidadeAmor; i++) {
+
+            mensagem.innerHTML += `${i} -  ${nome} <br>`
+
+        }
+
+    }
+</script>
