@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Digite um texto: <input oninput="analisar()" type="text" id="ipt_texto">
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+
+
+<script>
+    function analisar() {
+        var textoOriginal = ipt_texto.value;
+
+        console.log(textoOriginal); // Corrigido
+        div_mensagem.innerHTML = textoOriginal; // Corrigido
+
+        var mensagem = "";
+
+        var tamanho_texto = textoOriginal.length;
+
+        mensagem += `Quantidade de caracteres: ${tamanho_texto} <br>`;
+
+        // Verifica se possui ao menos 8 letras
+        var possui_8_letras = tamanho_texto >= 8;
+        mensagem += `Possui ao menos 8 letras? ${possui_8_letras} <br>`;
+
+        var termina_com = textoOriginal.endsWith('.com');
+        var termina_br = textoOriginal.endsWith('.br'); // Corrigido
+
+        if (termina_com) {
+            mensagem += 'Termina com .com <br>';
+        } else if (termina_br) {
+            mensagem += 'Termina com .br <br>';
+        } else {
+            mensagem += 'Não termina com ".com" nem ".br" <br>';
+        }
+
+        var comeca_abc = textoOriginal.startsWith('abc');
+
+        if (comeca_abc) {
+            mensagem += `Começa com abc! <br>`;
+        } else {
+            mensagem += `O texto não começa com abc! <br>`;
+        }
+
+        var textoMinusculo = textoOriginal.toLowerCase();
+        mensagem += `Texto minúsculo: ${textoMinusculo} <br>`;
+          
+        var textoMaiusculo = textoOriginal.toUpperCase(); // Corrigido
+        mensagem += `Texto maiúsculo: ${textoMaiusculo} <br>`;
+
+        if(textoOriginal != textoMaiusculo){
+            mensagem += `Possui caractere minúsculo`;
+
+        }else{
+        mensagem += `Não possui caractere minúsculo.O texto INTEIRO está em MAIÚSCULA`
+
+        }
+
+        if(textoOriginal != textoMinusculo){
+            mensagem += `Possui caractere MAIUSCULO `;
+        } else{
+            mensagem += `Possui carcatere maiusculo.O texto inteiro está em minúsculo <br>`
+        }
+
+        var primeiro_caractere = textoOriginal [0];
+        var terceiro_caractere = textoOriginal [2];
+        var ultimo_caractere = textoOriginal[tamanho_texto - 1] ;
+
+        mensagem += `
+        primeiro caractere: ${primeiro_caractere} <br>
+        Terceiro caractere ${terceiro_caractere} <br>
+        Ultimo caractere ${ultimo_caractere} <br>
+        `
+// verificando se tem arroba
+var indice_com = textoOriginal.indexOf('.com')
+        var indice_arroba = textoOriginal.indexOf ('@');
+        mensagem += `Indice do @: ${indice_arroba} <br>`
+
+        if(indice_arroba >= 0){
+            mensagem += `Contém "@" no texto original`
+        } else{
+            mensagem += `Não POSSUI "@" no texto original <br>`
+        }
+
+        if(indice_arroba < indice_com){
+            mensagem += `Válido.O '@' está antes do '.com <br>`
+        } else{
+            mensagem += `Inválido.O '.com' está antes do '.com' <br> ` 
+        }
+
+        var possui_arroba = textoOriginal.includes('@');
+        mensagem += `Texto possui @? ${possui_arroba} <br>`
+
+        var texto_sem_espacos = textoOriginal.replaceAll(' ' , '');
+        mensagem += `Texto sem espaço: ${texto_sem_espacos} <br>`
+
+        var texto_arroba_priemiro_A = textoOriginal.replace('A' , '@');
+        mensagem += `Texto com '@' no primeiro 'A' : ${texto_arroba_priemiro_A}`
+
+        div_mensagem.innerHTML = mensagem; // Atualiza a mensagem
+    }
+
+
+    
+</script>
