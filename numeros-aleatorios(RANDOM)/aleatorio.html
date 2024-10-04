@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="gerar()">Gerar aleatório</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function gerar(){
+        var aleatorio = Math.random();
+        div_mensagem.innerHTML = aleatorio;
+
+        
+
+        var cinco_quinze = aleatorio * 10 + 5;
+
+        div_mensagem.innerHTML = `
+        aleatorio gerado: ${aleatorio} <br>
+        aleatorio cinco-quinze: ${cinco_quinze}
+        `
+    }
+</script>
