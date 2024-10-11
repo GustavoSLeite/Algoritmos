@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Mínimo: <input type="text" id="input_min"> <br>
+    Máximo: <input type="text" id="input_max"> <br>
+    <button onclick="gerar()">Gerar Aleatório</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function gerar() {
+        var min = Number(input_min.value); 
+        var max = Number(input_max.value);
+        var intervalo = max - min;
+ 
+        var aleatorio = Math.random();  // gera um número entre 0 e 0.999999, que nunca chega a 1
+        // var zero_a_dez = Math.random() * 10; // gera um número entre 0 e 9.9999, pois ao gerar '0.999 * 10 => 9.999' 
+
+        var cinco_quinze = aleatorio * 10 + 5; 
+        // gera um número entre 5 e 14.999, pois gera um número entre 0 e 9.999, depois soma com 5, deslocando o intervalo de 5 até 14.9999
+        // no exemplo acima, é como se utilizasse as variáveis: min = 5, max = 15, intervalo = 15 - 5
+
+
+        /* com base nos valores informados pelo usuário, gero um número com base no intervalo entre o mínimo e máximo */
+        var aleatorio_min_max = aleatorio * intervalo + min; 
+        // gera um aleatório que vai de 0 até o intervalo min_max, depois soma com o 'mínimo', para deslocar o intervalo, começando sempre do mínimo e indo até o máximo 
+
+        var aleatorio_inteiro = aleatorio_min_max.toFixed(0); // após gerar o número aleatório, fixa o número em 0 casas decimais, arredondando as extremidades
+
+        div_mensagem.innerHTML = `
+            Aleatório gerado: ${aleatorio} <br>
+            Aleatório cinco-quinze: ${cinco_quinze} <br>
+            Aleatório Min-Max: ${aleatorio_min_max} <br>
+            Aleatório inteiro: ${aleatorio_inteiro} 
+        `;
+
+    }
+</script>

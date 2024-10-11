@@ -18,5 +18,22 @@ b) Abaixo das imagens, exiba quem venceu e exiba/atualize o placar de vitórias 
      </head>
      <body>
         <button onclick="jogar()">Jogar</button>
+        <div id="div_mensagem"></div>
      </body>
      </html>
+
+     <script>
+      function jogar() {
+         var jogador1 =Math.floor( Math.random() * 4);
+         var jogador2 = Math.floor(Math.random() * 4);
+
+         if(jogador1 == 1){
+            div_mensagem.innerHTML = ` ${jogador1} <br> Pedra`
+         } else if(jogador1 == 2){
+            div_mensagem.innerHTML = ` ${jogador1} <br> Papel`
+         } else{
+            div_mensagem.innerHTML = ` ${jogador1} <br> Tesoura`
+         }
+         
+      }
+     </script>

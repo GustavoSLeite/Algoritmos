@@ -1,0 +1,180 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Atividade Avaliativa - SPRINT 2</title>
+</head>
+
+<body>
+    <h1>Clube de Compras da SPorTech</h1>
+    <h2>CADASTRO</h2>
+
+    Usuário: <input type="text" id="ipt_usuario">
+    Senha: <input type="text" id="ipt_senha">
+
+
+    <button onclick="cadastro()">Cadastrar</button>
+    <div id="div_mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+    function cadastro() {
+        var usuario = ipt_usuario.value;
+
+        var mensagem = "";
+        var tamanho_texto = usuario.length;
+        div_mensagem.innerHTML = tamanho_texto
+
+
+
+
+        var possui_exclamacao = usuario.includes('!');
+        div_mensagem.innerHTML += `Não pode conter'!'' ${possui_exclamacao} <br>`
+
+        var indice_arroba = usuario.indexOf('@');
+        div_mensagem.innerHTML += `Não pode conter '@' ${indice_arroba} <br>`
+
+        var indice_cifra = usuario.indexOf('$');
+        div_mensagem.innerHTML += `Não pode conter '$' ${indice_cifra} <br>`
+
+        var indice_porcentagem = usuario.includes('%')
+        div_mensagem.innerHTML += `Não pode conter '%' ${indice_porcentagem} <br>`
+
+        var indice_hashtag = usuario.includes('#')
+        div_mensagem.innerHTML += `Não pode conter '#' ${indice_hashtag} <br>`
+
+
+
+
+
+
+
+        var senha = ipt_senha.value;
+        // A senha deve conter pelo menos oito caracteres, incluindo
+
+
+
+        /* comprimento da frase / quantidade de caracteres */
+        var tamanho_textoSenha = senha.length;
+        mensagem+= `Quantidade de caracteres: ${tamanho_textoSenha} <br>`
+
+        // valida se possui ao menos 8 caracteres
+        if (tamanho_textoSenha >= 8) {
+            mensagem += `O texto possui AO MENOS 8 caracteres <br>`
+        } else {
+          mensagem += `O texto NÃO POSSUI 8 caracteres <br>`
+        }
+
+        var senha_minusculo = senha.toLowerCase();
+        var senha_maiusculo = senha.toUpperCase();
+
+        /* validação se o texto possui maiúsculas e minúsculas */
+        if (usuario != senha_maiusculo) {
+            mensagem += `Possui caractere minúsculo <br>`;
+        } else {
+            mensagem +=  `Não possui caractere minúsculo. O texto INTEIRO está em MAIÚSCULO <br>`;
+        }
+
+        if (senha != senha_minusculo) {
+            mensagem += `Possui caractere MAIÚSCULO <br>`;
+        } else {
+            mensagem += `Não possui caractere MAIÚSCULO. O texto inteiro está em minúsculo <br>`;
+        }
+
+// Validação se a senha contem algum caratere especial
+        if(senha.includes('@')){
+            mensagem += `Senha válida! <br>`
+        } else{
+            mensagem += `Senha inválida! <br>`
+            
+        } 
+
+        if(senha.includes('!')){
+            mensagem += `Senha válida <br>` 
+        }else {
+            `Senha inválida <br>`
+        }
+
+        if(senha.includes('#')){
+            mensagem += `Senha válida <br>` 
+        }else {
+            `Senha inválida <br>`
+        }
+
+        if(senha.includes('$')){
+            mensagem += `Senha válida <br>` 
+        }else {
+            `Senha inválida <br>`
+        }
+
+        if(senha.includes('&')){
+            mensagem += `Senha válida <br>` 
+        }else {
+            `Senha inválida <br>`
+        }
+
+        if(senha.includes('%')){
+            mensagem += `Senha válida <br>` 
+        }else {
+            `Senha inválida <br>`
+        }
+
+        
+        // validação se a senha possui algum número
+
+        if(senha.includes(0)){
+            mensagem += `Sua senha inclui um número`
+        } else {
+            mensagem += `Sua senha não possui nenhum número`
+        }
+
+
+
+        // Ao clicar no botão "Cadastrar", caso passe pelas validações, o sistema atribui ao cliente um número aleatório de 1 a 4 para definir o grupo ao qual ele pertence, representando um benefício:
+        // CÓDIGO 1 - Grupo Ouro: Desconto de 20% em todas as compras.
+        // CÓDIGO 2 - Grupo Prata: Desconto de 15% em todas as compras.
+        // CÓDIGO 3 - Grupo Bronze: Desconto de 10% em todas as compras.
+        // CÓDIGO 4 - Grupo Cobre: Desconto de 5% em todas as compras.
+        // Exiba uma mensagem de confirmação do cadastro junto com o grupo de benefício sorteado para o cliente.
+
+        var grupoAleatorio = Math.floor(Math.random() * 5);
+
+        if (grupoAleatorio == 1) {
+            mensagem += `CÓDIGO 1 - Grupo Ouro: Desconto de 20% em todas as compras.`
+        } else if (grupoAleatorio == 2) {
+            mensagem += `CÓDIGO 2 - Grupo Prata: Desconto de 15% em todas as compras.`
+        } else if (grupoAleatorio == 3) {
+            mensagem += `CÓDIGO 3 - Grupo Bronze: Desconto de 10% em todas as compras.`
+        } else {
+            `CÓDIGO 4 - Grupo Cobre: Desconto de 5% em todas as compras.`
+        }
+
+
+        // Compra:
+        // Depois de realizar o login, o cliente pode realizar uma compra na loja. O sistema deve:
+
+        // Remover a exibição de todos os campos e botões;
+        // Gerar um número aleatório representando a quantidade de produtos que o cliente deseja comprar (entre 1 e 10).
+        // Gerar um número aleatório para o preço médio de cada produto (entre R$10,00 e R$100,00).
+        // Calcular o valor total da compra multiplicando a quantidade de produtos pelo preço médio de cada um.
+        // Aplicar o desconto correspondente ao grupo ao qual o cliente pertence, de acordo com a tabela de benefícios.
+        // Calcular o valor final da compra após o desconto.
+
+        var qtdProdutos = Math.floor(Math.random() * 10);
+        mensagem += `A quantidade de produtos que o cliente deseja comprar é: ${qtdProdutos}`
+
+        div_mensagem.innerHTML = mensagem
+
+
+
+
+
+    }
+
+
+</script>
