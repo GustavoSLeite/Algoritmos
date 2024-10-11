@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="contar()">Contar</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+<script>
+  function contar() {
+    var mensagem = "";
+
+    for (var contador = 0; contador <= 100000; contador++) {
+      mensagem += `${contador} <br>`;
+    } // a cada repetição, apenas incrementa a mensagem anterior
+
+    console.log(mensagem); // exibe o valor da variável no console
+
+    div_mensagem.innerHTML = mensagem; // acessa o HTML apenas uma vez
+
+    /*
+      dessa forma, otimizamos o processamento e mesmo fazendo 100 mil contagens (20x a contagem da versão 4), está mais performático
+      isso ocorre pois ao acessar o "div_mensagem.innerHTML" a cada repetição, exige mais esforço do que trabalhar apenas o texto
+        - Ao acessar o innerHTML, o computador procura o ID no HTML (percorrendo TODAS AS TAGS até encontrar) para depois incrementar seu innerHTML;
+        - Ao trabalhar com uma variável, a informação já está na memória do computador, facilitando a manipulação através do nome "mensagem";
+
+      Analogia: 
+        - Você está na biblioteca e precisa levar 50 livros para o 11º andar.
+        - Com o innerHTML dentro do for, seria como pegar 1 livro de cada vez e levar um até o 11º andar, tendo maior esforço. 
+        - Com a variável "mensagem", estamos acumulando todos os livros dentro de um carrinho e depois de acumularmos, levamos o carrinho para o 11º andar com todos os livros.
+      
+      No fim, ambos terão o mesmo resultado, de realizar a contagem, mas é evidente a diferença de performance
+    */
+  }
+</script>

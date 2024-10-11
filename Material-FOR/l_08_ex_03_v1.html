@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Tipo de Passageiro:
+    <select id="select_passageiro">
+      <option value="0">Selecione uma opção</option>
+      <option value="1">Comum</option>
+      <option value="2">Estudante</option>
+      <option value="3">Idoso/PNE</option>
+    </select>
+
+    <br />
+
+    Tipo de Passagem:
+    <select id="select_passagem">
+      <option value="0">Selecione uma opção</option>
+      <option value="1">Passagem Única</option>
+      <option value="2">Passagem Integração</option>
+    </select>
+    <br />
+    <button onclick="simular()">Simular Preço</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var comum = 4.4;
+  var integracao = 5.9;
+
+  function simular() {
+    var passageiro = select_passageiro.value;
+    var passagem = select_passagem.value;
+
+    if (passageiro == 0 || passagem == 0) {
+      alert("Selecione o passageiro e passagem para prosseguir");
+      div_mensagem.innerHTML = "";
+    } else {
+      var preco = 0;
+
+      if (passagem == 1) {
+        preco = comum;
+      } else {
+        preco = integracao;
+      }
+
+      if (passageiro == 2) {
+        preco = preco / 2;
+      }
+
+      if (passageiro == 3) {
+        preco = 0;
+      }
+
+      div_mensagem.innerHTML = `Valor da passagem escolhida: R$${preco}`;
+    }
+
+    // versão 2
+    // if (passagem == 1 && passageiro == 1) {
+    // }
+
+    // versão 3
+    // if (passageiro == 1) {
+    //     if (passagem == 1) {
+    //         preco = comum;
+    //     } else {
+    //         preco = integracao;
+    //     }
+    // }
+  }
+</script>

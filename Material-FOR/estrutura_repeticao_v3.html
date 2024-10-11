@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="contar()">Contar</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+<script>
+  var contador = 1; // começa o contador como 1, pois vamos exibir antes de atualizar
+
+  function contar() {
+    if (contador <= 10) { // conta somente até 10, ignorando caso esteja acima de 10
+
+      div_mensagem.innerHTML += `${contador} <br>`; // exibe o valor do contador antes de atualizar
+      contador++; // atualiza o contador DEPOIS de exibir - por isso começamos em 1
+      
+    }
+  }
+</script>

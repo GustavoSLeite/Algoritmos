@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="jogar()">Jogar</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+<script>
+  var pontos_jogador1 = 0; // total de pontos do Jogador 1 iniciado em 0
+  var pontos_jogador2 = 0; // total de pontos do Jogador 2 iniciado em 0
+
+  function jogar() {
+    var mensagem = "";
+
+    var figura_j1 = "";
+    var figura_j2 = "";
+
+    var aleatorio1 = Math.random(); // sorteia um número aleatório para o jogador 1
+    var aleatorio2 = Math.random(); // sorteia OUTRO número aleatório para o jogador 2
+
+    // valida em qual faixa o número sorteado se encaixa: de 0 até 0.33  /  de 0.33 até 0.66  /  de 0.66 até 0.99
+    if (aleatorio1 < 0.33) {
+      figura_j1 = "pedra"; // o 'figura_j1' será 'pedra', caso se encaixe no primeiro intervalo de 0 até 0.33
+    } else if (aleatorio1 < 0.66) {
+      figura_j1 = "tesoura"; // o 'figura_j1' será 'tesoura', caso se encaixe no intervalo de 0.33 até 0.66
+    } else {
+      figura_j1 = "papel"; // o 'figura_j1' será 'papel', caso se encaixe no intervalo de 0.66 até 0.99
+    }
+
+    // valida em qual faixa o número sorteado se encaixa: de 0 até 0.33  /  de 0.33 até 0.66  /  de 0.66 até 0.99
+    if (aleatorio2 < 0.33) {
+      figura_j2 = "pedra"; // o 'figura_j2' será 'pedra', caso se encaixe no primeiro intervalo de 0 até 0.33
+    } else if (aleatorio2 < 0.66) {
+      figura_j2 = "tesoura"; // o 'figura_j2' será 'tesoura', caso se encaixe no intervalo de 0.33 até 0.66
+    } else {
+      figura_j2 = "papel"; // o 'figura_j2' será 'papel', caso se encaixe no intervalo de 0.66 até 0.99
+    }
+
+    // sabendo qual é o figura_j1 e o figura_j2, utilizamos a informação para referenciar uma imagem para cada jogador
+    var imagem_jogador1 = `<img style="width: 40px" src="${figura_j1}.jpeg">`; // caso sorteie 'pedra', o src será 'pedra.jpeg'
+    var imagem_jogador2 = `<img style="width: 40px" src="${figura_j2}.jpeg">`; // caso sorteie 'papel', o src será 'papel.jpeg'
+
+    mensagem = `J1: ${imagem_jogador1} | J2: ${imagem_jogador2}<br>`; // exibe as imagens de cada jogador
+
+    if (figura_j1 == figura_j2) { // se as figuras forem iguais, haverá empate 
+      mensagem += `O jogo empatou! <br>`;
+    } else if (
+      (figura_j1 == "pedra" && figura_j2 == "tesoura") ||
+      (figura_j1 == "tesoura" && figura_j2 == "papel") ||
+      (figura_j1 == "papel" && figura_j2 == "pedra")
+    ) { // se o J1 for pedra e o J2 tesoura OU o J1 for tesoura e o J2 papel OU o J1 for papel e o J2 pedra, significa que o 1 ganhou
+      mensagem += `O jogador 1 ganhou!<br>`;
+      pontos_jogador1++; // acumula um ponto para o 'J1'
+    } else { // se não houve empate e nem vitória do jogador 1, significa que o jogador 2 venceu
+      mensagem += `O jogador 2 ganhou!<br>`;
+      pontos_jogador2++; // acumula um ponto para o 'J2'
+    }
+
+    mensagem += `
+        Jogador 1: ${pontos_jogador1} <br>
+        Jogador 2: ${pontos_jogador2} <br><br><br>
+    `;
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>

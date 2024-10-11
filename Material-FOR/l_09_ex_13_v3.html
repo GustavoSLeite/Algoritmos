@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    A cada quantos dias treina?
+    <input type="text" id="input_dias" /> <br />
+
+    <button onclick="ver()">Ver rotina mensal</button>
+
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+<script>
+  function ver() {
+    var dias = Number(input_dias.value);
+
+    var mensagem = "";
+    for (var cont = 1; cont <= 30; cont++) {
+      if ((cont - 1) % dias == 0) {
+        mensagem += `Dia ${cont} - Musculação<br>`;
+      } else {
+        mensagem += `Dia ${cont} - Comer, dormir, etc.<br>`;
+      }
+    }
+
+    div_mensagem.innerHTML = mensagem;
+
+    /*
+        Nesse exemplo, estamos validando o "(cont - 1) % dias == 0"
+        Com isso, validamos se o contador atual - 1 é múltiplo do número de dias, como: 
+
+            dias = 3; 
+            contador = 1;  // contador começa em 1, mas sempre valida o anterior
+
+            cont está em 1, mas valida como '0'     0 % dias => 0 (resto) // múltiplo de 3!
+            cont está em 2, mas valida como '1'     1 % dias => 1 (resto)                   
+            cont está em 3, mas valida como '1'     2 % dias => 2 (resto)                   
+            cont está em 4, mas valida como '3'     3 % dias => 0 (resto) // múltiplo de 3!     
+            cont está em 5, mas valida como '4'     4 % dias => 1 (resto)                   
+            cont está em 6, mas valida como '5'     5 % dias => 2 (resto)                   
+            cont está em 7, mas valida como '6'     6 % dias => 0 (resto) // múltiplo de 3!     
+            cont está em 8, mas valida como '7'     7 % dias => 1 (resto) 
+            ...                  
+
+        Ao começar o contador com 1, estamos obtendo resto 1 na primeira execução desse exemplo acima
+        Por isso, precisamos reduzir o contador em 1, para ajustar as validações de múltiplos
+        Com isso, o padrão se mantém a cada 3 repetições, validando o múltiplo com base no "contador atual -1"
+    */
+  }
+</script>

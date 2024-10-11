@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <button onclick="contar()">Contar</button>
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+<script>
+  var contador = 0; // começa o contador em 0, pois vamos atualizar antes de exibir
+
+  function contar() {
+    contador++; // atualiza o contador ANTES de exibir - por isso começamos em 0
+    div_mensagem.innerHTML += `${contador} <br>`; // exibe o contador atualizado
+  }
+</script>

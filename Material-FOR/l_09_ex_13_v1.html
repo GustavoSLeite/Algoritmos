@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    A cada quantos dias treina?
+    <input type="text" id="input_dias"> <br>
+
+    <button onclick="ver()">Ver rotina mensal</button>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+<script>
+    function ver() {
+        var dias = Number(input_dias.value);
+
+        var mensagem = "";
+        for (var cont = 0; cont < 30; cont++) {
+
+            // verifica se o contador atual é múltiplo/divisível pelo número de dias informado
+            // zero é divisível por qualquer número, então já executa a mensagem na primeira repetição
+            if (cont % dias == 0) { 
+                mensagem += `Dia ${cont + 1} - Musculação<br>`;
+            } else {
+                mensagem += `Dia ${cont + 1} - Comer, dormir, etc.<br>`;
+            }
+            
+        }
+
+        div_mensagem.innerHTML = mensagem;
+
+    }
+</script>

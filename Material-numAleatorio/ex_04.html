@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="sortear()">Sortear Nota para aluno</button>
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function sortear() {
+        var aleatorio_gerado = Math.random();
+
+        var aleatorio_manipulado = (aleatorio_gerado * 10);
+
+        console.log(aleatorio_manipulado)
+
+        // apenas na hora de exibir, limita o número para 1 casa decimal
+        div_mensagem.innerHTML = `Nota sorteada: ${aleatorio_manipulado.toFixed(1)}`;
+    }
+</script>

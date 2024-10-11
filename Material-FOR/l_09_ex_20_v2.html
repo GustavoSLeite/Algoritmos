@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+
+    Quantos depósitos: 
+    <input type="text" id="input_depositos"> <br>
+
+    Valor depósito: 
+    <input type="text" id="input_valor"> <br>
+
+    <button onclick="acompanhar()">Acompanhar grana</button>
+    
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function acompanhar() {
+        var depositos = input_depositos.value;
+        var valor = input_valor.value;
+
+        var mensagem = ""
+
+        for (var cont = 1; cont <= depositos; cont++) {
+            mensagem += `${cont}º Mês: R$${cont * valor} <br>`;
+        }
+
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>

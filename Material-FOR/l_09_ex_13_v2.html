@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    A cada quantos dias treina?
+    <input type="text" id="input_dias" /> <br />
+
+    <button onclick="ver()">Ver rotina mensal</button>
+
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+<script>
+  function ver() {
+    var dias = Number(input_dias.value);
+
+    var mensagem = "";
+    for (var cont = 1; cont <= 30; cont++) {
+      // se o intervalo de dias for 1 OU o resto da divisão do contador por dias for 1 
+      if (dias == 1 || cont % dias == 1) { 
+        mensagem += `Dia ${cont} - Musculação<br>`;
+      } else {
+        mensagem += `Dia ${cont} - Comer, dormir, etc.<br>`;
+      }
+    }
+
+    div_mensagem.innerHTML = mensagem;
+
+    /*
+        Nesse exemplo, estamos validando o "cont % dias == 1".
+        Com isso, validamos se o contador é 1 após o múltiplo de dias, como: 
+
+            dias = 3; 
+
+            0 % dias => 0 (resto) // esse é múltiplo!
+            1 % dias => 1 (resto) // esse é 1 após o múltiplo!
+            2 % dias => 2 (resto)
+            3 % dias => 0 (resto) // esse é múltiplo!
+            4 % dias => 1 (resto) // esse é 1 após o múltiplo!
+            5 % dias => 2 (resto) 
+            6 % dias => 0 (resto) // esse é múltiplo!
+            7 % dias => 1 (resto) // esse é 1 após o múltiplo!
+
+        Ao começar o contador com 1, estamos obtendo resto 1 na primeira execução desse exemplo acima
+        Com isso, o padrão se mantém a cada 3 repetições, porém agora não estamos buscando os múltiplos, mas sim um após o múltiplo
+    
+    */
+  }
+</script>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Idade atual:
+    <input oninput="verificar()" type="text" id="input_idade" />
+    <br />
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+<script>
+
+  // função chamada através do evento ONINPUT na tag input, que ao digitar, executa a função
+  function verificar() {
+    var idade = Number(input_idade.value);
+
+    var mensagem = "";
+    for (var cont = 0; cont <= idade; cont++) {
+      mensagem += `<br>${cont} anos`;
+
+      if (cont >= 0 && cont <= 4) {
+        mensagem += "(Primeira Infância)";
+      } else if (cont <= 6) {
+        mensagem += `(Pré-escolar)`;
+      } else if (cont <= 10) {
+        mensagem += `(Segunda infância)`;
+      } else if (cont <= 18) {
+        mensagem += `(Adolescência)`;
+      } else if (cont <= 50) {
+        mensagem += `(Adulto)`;
+      } else if (cont <= 100) {
+        mensagem += `(Melhor idade)`;
+      } else {
+        mensagem += `(Matusalém)`;
+      }
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+</script>
