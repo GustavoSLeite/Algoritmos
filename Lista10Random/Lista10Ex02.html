@@ -1,0 +1,33 @@
+<!-- 2. Crie um programa o qual:  
+
+a) Ao clicar no botão "Sortear time", faz aparecer somente um dos escudos dos 4 times de futebol de maior torcida do estado de São Paulo. Independente da imagem, todas devem ter 150px de altura.   -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <button onclick="sortearTime()">Sortear time</button>
+
+    <div id="div_mensagem"></div>
+</body>
+</html>
+
+<script>
+    function sortearTime() {
+        var numAleatorio = Math.floor( Math.random() * 4) + 1;
+        
+        if(numAleatorio == 1){
+            div_mensagem.innerHTML = `Palmeiras`
+        } else if(numAleatorio == 2){
+            div_mensagem.innerHTML = `Corinthians`
+        } else if(numAleatorio == 3){
+            div_mensagem.innerHTML = `São Paulo`
+        } else{
+            div_mensagem.innerHTML = `Santos`
+        }
+    }
+</script>

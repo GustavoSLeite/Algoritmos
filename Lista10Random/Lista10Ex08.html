@@ -1,0 +1,57 @@
+<!-- 8. Crie um programa o qual:  
+
+a) Tenha um botão "Gerar uma nota de aluno entre 0 e 10" que faz aparecer, abaixo dele, a nota gerada  
+
+b) Tenha um botão "Gerar uma frequência de aluno entre 0 e 100" que faz aparecer, abaixo dele, a frequência gerada  
+
+c) Deixe todos os valores com 2 casas decimais na tela  
+
+d) Ao clicar no botão “Ver Situação", emitir um alerta com a situação desse aluno. 
+
+   -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <button onclick="gerarNotaZeroAoDez()">Gerar uma nota de aluno entre 0 e 10</button>
+    <button onclick="gerarNotaZeroAoCem()">Gerar uma frequência de aluno entre 0 e 100</button>
+
+    <div id="div_mensagem1"></div>
+    <div id="div_mensagem2"></div>
+
+</body>
+
+</html>
+<script>
+    function gerarNotaZeroAoDez() {
+
+        var notaGeradaZeroAoDez = (Math.random() * 10).toFixed(2);
+        var mensagem = "";
+
+        mensagem = `${notaGeradaZeroAoDez} <br>`
+
+
+        div_mensagem1.innerHTML = mensagem
+
+
+
+    }
+
+    function gerarNotaZeroAoCem() {
+        var notaGeradaZeroAoCem = (Math.random() * 100).toFixed(2);
+        var mensagem = "";
+
+        mensagem = `${notaGeradaZeroAoCem} <br>`
+
+        div_mensagem2.innerHTML = mensagem;
+    }
+
+
+</script>

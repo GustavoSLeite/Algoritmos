@@ -1,0 +1,275 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Desafio One Piece</title>
+    <h1>Calculador One Piece!</h1>
+</head>
+<body>
+    Por qual episódio você deseja começar?
+    <input id="input_episodio" placeholder="Escolha entre 1 e 1100!">
+    <br>
+    Quanto tempo disponível você tem para assistir?
+    <input id="input_tempo" placeholder="1, 2, 3, 4...">
+    <br>
+    Selecione a unidade de tempo:
+    <select name="unidadeTempo" id="select_unidadeTempo">
+        <option value="vazio">Selecione uma opção</option>
+        <option value="horas">Horas</option>
+        <option value="minutos">Minutos</option>
+    </select>
+    <br>
+    Você vai pular as aberturas?
+    <select name="abertura" id="select_abertura">
+        <option value="vazio">Selecione uma opção</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+    </select>
+    <br>
+    E os encerramentos? Vai pular?
+    <select name="encerramento" id="select_encerramento">
+        <option value="vazio">Selecione uma opção</option>
+        <option value="sim">Sim</option>
+        <option value="nao">Não</option>
+    </select>
+    <br>
+    <button onclick="calcEpisodios()">Assistir episódios</button>
+    <br>
+    <div id="div_mostrarTempo"></div>
+</body>
+</html>
+
+<script>
+    function calcEpisodios()
+    {
+        const episodio = Number(input_episodio.value);
+        const unidadeTempo = select_unidadeTempo.value;
+        const pularAbertura = select_abertura.value;
+        const pularEncerramento = select_encerramento.value;
+
+        let tempoTotal = Number(input_tempo.value);
+        let duracaoEpisodio = 24; 
+        let tempoPercorrido = 0;
+        
+        div_mostrarTempo.innerHTML = ""
+        if(isNaN(episodio))
+        {
+            alert("Episódio inválido! Insira apenas números!");
+        }
+        else if(episodio < 1 || episodio > 1100)
+        {
+            alert("O número do episódio é inválido!");
+        }
+        else if(isNaN(tempoTotal))
+        {
+            alert("O tempo precisa ser um número!");
+        }
+        else if(tempoTotal < 1 && unidadeTempo == "minutos")
+        {
+            alert("Insira um tempo válido!");
+        }
+        else if(unidadeTempo == "vazio")
+        {
+            alert("Selecione uma unidade de tempo!");
+        }
+        else if(pularAbertura == "vazio")
+        {
+            alert("Selecione se deseja ou não pular as aberturas!");
+        }
+        else if(pularEncerramento == "vazio")
+        {
+            alert("Selecione se deseja ou não pular os encerramentos!");
+        }
+        else if(unidadeTempo == "horas")
+        {
+             tempoTotal *= 60;
+
+            if(pularAbertura == "sim")
+            {
+                if(pularEncerramento == "sim")
+                {   
+                    //Pula abertura e encerramento. Em horas
+                    duracaoEpisodio -= 4;
+
+                    for(let contagemEp = episodio; tempoPercorrido < tempoTotal; contagemEp++)
+                    {
+                        div_mostrarTempo.innerHTML += `<br>Episódio: ${contagemEp}<br>`
+                        for(let contagemMinutos = 1; contagemMinutos <= duracaoEpisodio && tempoPercorrido < tempoTotal; contagemMinutos++)
+                        {
+                            div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o episódio<br>`;
+                            tempoPercorrido++
+                        }
+                    }
+                }
+                else
+                {
+                    //Pula apenas abertura. Em horas
+                    duracaoEpisodio -= 2;
+
+                    for(let contagemEp = episodio; tempoPercorrido < tempoTotal; contagemEp++)
+                    {
+                        div_mostrarTempo.innerHTML += `<br>Episódio: ${contagemEp}<br>`
+                        for(let contagemMinutos = 1; contagemMinutos <= duracaoEpisodio && tempoPercorrido < tempoTotal; contagemMinutos++)
+                        {
+                            if(contagemMinutos <= 20)
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o episódio<br>`;
+                            }
+                            else
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o encerramento<br>`;
+                            }
+                            tempoPercorrido++;
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if(pularEncerramento == "sim")
+                {   
+                    //Pula apenas encerramento. Em horas
+                    duracaoEpisodio -= 2;
+
+                    for(let contagemEp = episodio; tempoPercorrido < tempoTotal; contagemEp++)
+                    {
+                        div_mostrarTempo.innerHTML += `<br>Episódio: ${contagemEp}<br>`
+                        for(let contagemMinutos = 1; contagemMinutos <= duracaoEpisodio && tempoPercorrido < tempoTotal; contagemMinutos++)
+                        {
+                            if(contagemMinutos > 2)
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o episódio<br>`;
+                            }
+                            else
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo a abertura<br>`;
+                            }
+                            tempoPercorrido++;
+                        }
+                    }
+                }
+                else
+                {
+                    //Não pula nenhum. Em horas
+                    for(let contagemEp = episodio; tempoPercorrido < tempoTotal; contagemEp++)
+                    {
+                        div_mostrarTempo.innerHTML += `<br>Episódio: ${contagemEp}<br>`
+                        for(let contagemMinutos = 1; contagemMinutos <= duracaoEpisodio && tempoPercorrido < tempoTotal; contagemMinutos++)
+                        {
+                            if(contagemMinutos <= 2)
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo a abertura<br>`;
+                            }
+                            else if(contagemMinutos <= 20)
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o episódio<br>`;
+                            }
+                            else
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o encerramento<br>`
+                            }
+                            tempoPercorrido++;
+                        }
+                    }
+                }
+            }
+        }
+        else
+        {
+            if(pularAbertura == "sim")
+            {
+                if(pularEncerramento == "sim")
+                {   
+                    //Pula abertura e encerramento. Em minutos
+                    duracaoEpisodio -= 4;
+
+                    for(let contagemEp = episodio; tempoPercorrido < tempoTotal; contagemEp++)
+                    {
+                        div_mostrarTempo.innerHTML += `<br>Episódio: ${contagemEp}<br>`
+                        for(let contagemMinutos = 1; contagemMinutos <= duracaoEpisodio && tempoPercorrido < tempoTotal; contagemMinutos++)
+                        {
+                            div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o episódio<br>`;
+                            tempoPercorrido++
+                        }
+                    }
+                }
+                else
+                {
+                    //Pula apenas abertura. Em minutos
+                    duracaoEpisodio -= 2;
+
+                    for(let contagemEp = episodio; tempoPercorrido < tempoTotal; contagemEp++)
+                    {
+                        div_mostrarTempo.innerHTML += `<br>Episódio: ${contagemEp}<br>`
+                        for(let contagemMinutos = 1; contagemMinutos <= duracaoEpisodio && tempoPercorrido < tempoTotal; contagemMinutos++)
+                        {
+                            if(contagemMinutos <= 20)
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o episódio<br>`;
+                            }
+                            else
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o encerramento<br>`;
+                            }
+                            tempoPercorrido++
+                            
+                        }
+                    }
+                }
+            }
+            else
+            {
+                if(pularEncerramento == "sim")
+                {   
+                    //Pula apenas encerramento. Em minutos
+                    duracaoEpisodio -= 2;
+
+                    for(let contagemEp = episodio; tempoPercorrido < tempoTotal; contagemEp++)
+                    {
+                        div_mostrarTempo.innerHTML += `<br>Episódio: ${contagemEp}<br>`
+                        for(let contagemMinutos = 1; contagemMinutos <= duracaoEpisodio && tempoPercorrido < tempoTotal; contagemMinutos++)
+                        {
+                            if(contagemMinutos >2)
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o episódio<br>`;
+                            }
+                            else
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo a abertura<br>`;
+                            }
+                            tempoPercorrido++
+                        }
+                    }
+                }
+                else
+                {
+                    //Não pula nenhum. Em minutos
+                    for(let contagemEp = episodio; tempoPercorrido < tempoTotal; contagemEp++)
+                    {
+                        div_mostrarTempo.innerHTML += `<br>Episódio: ${contagemEp}<br>`
+                        for(let contagemMinutos = 1; contagemMinutos <= duracaoEpisodio && tempoPercorrido < tempoTotal; contagemMinutos++)
+                        {
+                            if(contagemMinutos <= 2)
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo a abertura<br>`;
+                            }
+                            else if(contagemMinutos <= 20)
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o episódio<br>`;
+                            }
+                            else
+                            {
+                                div_mostrarTempo.innerHTML +=`Minuto ${contagemMinutos}: Assistindo o encerramento<br>`;
+                            }
+                            tempoPercorrido++
+                        }
+                    }
+                }
+            }
+        }
+        div_mostrarTempo.innerHTML +=
+        `<br>Fim dos episódios!<br>
+        Foram assistidos: ${tempoTotal / duracaoEpisodio} episódios!`
+    }   
+</script>
