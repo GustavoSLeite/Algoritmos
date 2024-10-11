@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Operações Aritméticas</title>
+</head>
+<body>
+    Número 1: <input id="input_n1" type="number"> <br>
+    Número 2: <input id="input_n2" type="number"> <br>
+
+    <button onclick="multiplicar()">Multiplicar</button> 
+    <button onclick="dividir()">Dividir</button>
+    <button onclick="subtrair()">Subtrair</button>
+    <button onclick="somar()">Somar</button>
+</body>
+</html>
+<script>
+    function multiplicar() {
+        alert('O resultado da multiplicação é: ' + input_n1.value * input_n2.value)
+    }
+
+    function dividir() {
+        alert('O resultado da multiplicação é: ' + input_n1.value / input_n2.value)
+    }
+    
+    function subtrair() {
+        alert('O resultado da subtração é: ' + (input_n1.value - input_n2.value))
+    }
+
+    function somar() {
+        alert('O resultado da soma é: ' + (Number(input_n1.value) + Number(input_n2.value)))
+    }
+</script>

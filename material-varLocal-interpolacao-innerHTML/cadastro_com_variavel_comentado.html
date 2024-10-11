@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Nome: 
+    <input id="input_nome" type="text"> <br>
+
+    Ano de Nascimento: 
+    <input id="input_ano" type="text"> <br>
+
+    <button onclick="cadastrar()">Cadastrar</button>
+</body>
+</html>
+
+<script>
+    /*
+        Composição de uma variável:
+
+        var nome_variavel = "valor variável"
+
+            - var:    a palavra reservada que indica ao JS que a seguir será definida uma variável que irá armazenar algum valor temporariamente;
+            - nome_da_funcao:    é o identificador da variável, como se fosse um apelido para a informação armazenada;
+            - =:    o sinal de igual indica que a seguir, algum valor será atribuído para essa variável, armazenando seu valor;
+            - "valor variável":    é o valor que será atribuido a variável, pode ser texto, número, etc; 
+    */
+
+    function cadastrar() {
+        var nome = input_nome.value         // armazena na variável "nome" o nome digitado no campo "input_nome" 
+        var ano = Number(input_ano.value)   // armazena na variável "ano" o ano digitado no campo "input_ano" após converter para NÚMERO 
+        // ao chamar a variável "ano", seu valor sempre será numérico, porque já existe a conversão para Number() logo em sua declaração
+        
+        var idade = 2024 - ano              // armazena na variável "idade" o resultado da subtração 
+
+        alert('O usuário ' + nome + ' foi cadastrado com sucesso.' ) // utilizando concatenação, exibe o valor armazenado na variável "nome"
+        
+        var mensagem = 'Nome: ' + nome + ' - Idade: ' + idade    // armazena na variável "mensagem" um texto que utiliza as variáveis "nome" e "idade"
+        alert(mensagem) // exibe o valor armazenado na variável "mensagem"
+        // deste modo, simplificamos o comando alert, estruturando a mensagem inteira antes de exibir
+    }
+</script>

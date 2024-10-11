@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    Nome: 
+    <input id="input_nome" type="text"> <br>
+
+    Ano de Nascimento: 
+    <input id="input_ano" type="text"> <br>
+
+    <button onclick="cadastrar()">Cadastrar</button>
+
+    <div id="div_mensagem">
+        Conteúdo inicial da div_mensagem!
+    </div>
+</body>
+</html>
+
+<script>
+    function cadastrar() {
+        var nome = input_nome.value      
+        var ano = Number(input_ano.value)
+        
+        var idade = 2024 - ano           
+
+        alert('O usuário ' + nome + ' foi cadastrado com sucesso.') // essa mensagem será exibida na caixa de diálogo criada pelo alerta
+        
+        var mensagem = `Nome:  ${nome}  - Idade:  ${idade}` // técnica de INTERPOLAÇÃO para substituir valores dinamicamente em um texto
+        
+        /*
+            O comando acima, representa o mesmo que a CONCATENAÇÃO do comando abaixo
+                var mensagem = 'Nome: ' + nome + ' - Idade: ' + idade 
+            
+            Em JS, existem três formas de criação/manipulação de textos, como: 
+                'texto comum em aspas simples'
+                "texto comum em aspas duplas"
+                `texto comum em crase / acento grave`
+
+            Todos os exemplos acima representam STRINGS (textos), que serão tratados da mesma forma pelo JS.
+            Porém, a `CRASE` possui algumas características e funcionalidades adicionais em comparação aos outros tipos de texto.
+            Quando precisamos estruturar uma mensagem como "Olá, <nome do usuário>!", podemos juntar os valores de duas formas, sendo:
+
+                Concatenação: 
+                    "Olá, "  +  input_nome.value  +  "!"  => "Olá, Fulano!"
+
+                Interpolação (template strings): 
+                    `Olá, ${input_nome.value}!`           => "Olá, Fulano!"
+
+            O resultado dos dois comandos acima é exatamente o mesmo, o que muda é somente a sintaxe/estrutura do código.
+            - Na concatenação, realizamos a junção dos textos utilizando: "trecho 1" + "trecho 2" + "trecho 3"...
+            - Já na interpolação, delimitamos o texto inteiro com crases e colocamos os valores a serem INTERPOLADOS/substituídos dentro de ${}.
+                A sintaxe de ${} para interpolar valores funciona somente caso o texto seja englobado por CRASE
+                Ao utilizar " ${A} ", será exibido literalmente ${A} no texto ao invés de interpolar o valor de A, por usar ASPAS ao invés de CRASE 
+        
+            Exemplos: 
+
+                CONCATENAÇÃO -> alert("Meu nome é "  + nome + ", minha idade é " + idade);
+                INTERPOLAÇÃO -> alert(`Meu nome é ${nome} , minha idade é ${idade}`);
+        */ 
+
+
+        div_mensagem.innerHTML = mensagem; // essa mensagem será exibida no HTML INTERIOR do elemento identificado como "div_mensagem"
+
+
+        /*
+            Ao manipular elementos HTML via JS, é NECESSÁRIO ter um identificador para o elemento.
+            Para manipular seu conteúdo, devemos utilizar o atributo "innerHTML", que representa todo o HTML dentro daquela tag.
+            O "innerHTML" pode ser usado para visualizar e para manipular o conteúdo da div.
+
+            -- FAÇA TESTES NO CONSOLE PARA CHECAR! 
+
+            Ao utilizar o comando:   
+                alert(div_mensagem.innerHTML)
+            O alerta irá capturar o conteúdo interior que existe no elemento "div_mensagem" e exibí-lo.
+
+            Ao utilizar o comando:    
+                div_mensagem.innerHTML = "abc"
+            O conteúdo interior da "div_mensagem" será reatribuído/sobrescrito com o valor do texto "abc", SOBRESCREVENDO o conteúdo anterior
+            
+            Ao utilizar o comando:    
+                div_mensagem.innerHTML = div_mensagem.innerHTML + 'algoritmos'
+            O conteúdo interior da "div_mensagem" será incrementado/concatenado com o texto 'algoritmos', preservando seu conteúdo anterior
+        */
+    }
+</script>
