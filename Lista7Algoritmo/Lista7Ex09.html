@@ -44,11 +44,15 @@ c) Ao clicar em "Analisar compra", podem aparecer as seguintes mensagens na te
 </html>
 
 <script>
-    function analisarCompra(){
+    function analisarCompra() {
         var marcaTV = marcaTV.value
         var precoTV = Number(ipt_preco.value)
 
 
-        if(precoTV < 800 || precoTV > 2000) 
+        if (precoTV < 800 || precoTV > 2000) {
+            mensagem.innerHTML = "TV fora da faixa de preço"
+        } else if ((precoTV >= 800 || precoTV <= 2000) && (marcaTV == "Mondial" || marcaTV == "Britânia")) {
+            mensagem.innerHTML = "Na faixa de preço, porém marca não confiável"
+        }
     }
 </script>
