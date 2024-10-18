@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cadastro e Login SPorTech</title>
+</head>
+<body>
+    <div class="cadastro">
+        Usuário: <input type="text" id="ipt_user">
+        Senha: <input type="password" id="ipt_senha">
+        <button onclick="cadastrar()">Cadastrar</button>
+        <div id="div_mensagem"></div>
+    </div>
+
+    <div class="login" style="display: none;">
+        Usuário: <input type="text" id="ipt_user_login">
+        Senha: <input type="password" id="ipt_senha_login">
+        Grupo: <input type="text" id="ipt_grupo_login">
+        <button onclick="acessarClube()">Acessar Clube</button>
+        <div id="div_mensagem_login"></div>
+    </div>
+
+    <div class="compra" style="display: none;">
+        <div id="div_extrato"></div>
+    </div>
+
+    <script>
+        let usuarioCadastrado = "";
+        let senhaCadastrada = "";
+        let grupoCadastrado = 0;
+
+        function cadastrar() {
+            var usuario = ipt_user.value;
+            var mensagem = "";
+
+            // VERIFICAR SE HÁ CARACTERES ESPECIAIS
+            if (usuario.includes('!') || usuario.includes('@') || usuario.includes('#') ||
+                usuario.includes('$') || usuario.includes('%') || usuario.includes('&') || 
+                usuario.includes(' ')) {
+                mensagem += `Nome de usuário inválido. Verifique os caracteres utilizados. <br>`;
+            }
+
+            // SENHA
+            var senha = ipt_senha.value;
+
+            // VERIFICAR SE A SENHA TEM NO MÍNIMO 8 CARACTERES
+            if (senha.length < 8) {
+                mensagem += `A senha deve conter no mínimo 8 caracteres. <br>`;
+            }
+
+            if (!(/[!@#$%&]/.test(senha))) {
+                mensagem += `A senha deve conter pelo menos um caractere especial (!, @, #, $, % ou &). <br>`;
+            }
+
+            let temMaiuscula = /[A-Z]/.test(senha);
+            let temMinuscula = /[a-z]/.test(senha);
+            let temNumero = /\d/.test(senha);
+
+            if (!temMaiuscula) {
+                mensagem += `A senha deve conter pelo menos uma letra maiúscula. <br>`;
+            }
+            if (!temMinuscula) {
+                mensagem += `A senha deve conter pelo menos uma letra minúscula. <br>`;
+            }
+            if (!temNumero) {
+                mensagem += `A senha deve conter pelo menos um número. <br>`;
+            }
+
+            if (mensagem) {
+                div_mensagem.innerHTML = mensagem;
+                return; // Não prossegue se houver erro
+            }
+
+            // GERAR GRUPO ALEATÓRIO
+            grupoCadastrado = Math.floor(Math.random() * 4) + 1;
+            var mensagemSucesso = `Cadastrado com sucesso!`;
+
+            switch (grupoCadastrado) {
+                case 1:
+                    mensagemSucesso += ` Grupo Ouro: Desconto de 20% em todas as compras.`;
+                    break;
+                case 2:
+                    mensagemSucesso += ` Grupo Prata: Desconto de 15% em todas as compras.`;
+                    break;
+                case 3:
+                    mensagemSucesso += ` Grupo Bronze: Desconto de 10% em todas as compras.`;
+                    break;
+                case 4:
+                    mensagemSucesso += ` Grupo Cobre: Desconto de 5% em todas as compras.`;
+                    break;
+            }
+
+            // Armazenar informações do cadastro
+            usuarioCadastrado = usuario;
+            senhaCadastrada = senha;
+
+            // LIMPAR OS CAMPOS DE CADASTRO
+            ipt_user.value = "";
+            ipt_senha.value = "";
+
+            div_mensagem.innerHTML = mensagemSucesso;
+
+            // Mostrar a tela de login
+            document.querySelector('.cadastro').style.display = 'none';
+            document.querySelector('.login').style.display = 'block';
+        }
+
+        function acessarClube() {
+            var usuarioLogin = ipt_user_login.value;
+            var senhaLogin = ipt_senha_login.value;
+            var grupoLogin = parseInt(ipt_grupo_login.value);
+
+            if (usuarioLogin === usuarioCadastrado && senhaLogin === senhaCadastrada && grupoLogin === grupoCadastrado) {
+                div_mensagem_login.innerHTML = `Login realizado com sucesso!`;
+                iniciarCompra();
+            } else {
+                div_mensagem_login.innerHTML = `Login Inválido! Informações não correspondem.`;
+            }
+        }
+
+        function iniciarCompra() {
+            // Oculta o formulário de login
+            document.querySelector('.login').style.display = 'none';
+
+            // Gera quantidade de produtos e preço médio
+            var quantidadeProdutos = Math.floor(Math.random() * 10) + 1; // 1 a 10
+            var precoMedio = (Math.random() * 90 + 10).toFixed(2); // R$10,00 a R$100,00
+            var valorOriginal = (quantidadeProdutos * precoMedio).toFixed(2);
+
+            // Aplica desconto
+            let percentualDesconto = 0;
+            switch (grupoCadastrado) {
+                case 1:
+                    percentualDesconto = 20;
+                    break;
+                case 2:
+                    percentualDesconto = 15;
+                    break;
+                case 3:
+                    percentualDesconto = 10;
+                    break;
+                case 4:
+                    percentualDesconto = 5;
+                    break;
+            }
+
+            var valorDesconto = (valorOriginal * (percentualDesconto / 100)).toFixed(2);
+            var valorFinal = (valorOriginal - valorDesconto).toFixed(2);
+
+            // Exibe o extrato
+            var extrato = `
+                <h2>Extrato de Compra</h2>
+                <div>Quantidade de produtos: ${quantidadeProdutos}</div>
+                <div>Preço médio por produto: R$${precoMedio}</div>
+                <div>Valor original: R$${valorOriginal}</div>
+                <div>Desconto: ${percentualDesconto}% (-R$${valorDesconto})</div>
+                <div>Valor final: R$${valorFinal}</div>
+            `;
+
+            document.getElementById('div_extrato').innerHTML = extrato;
+            document.querySelector('.compra').style.display = 'block';
+        }
+    </script>
+</body>
+</html>

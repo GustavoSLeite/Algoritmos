@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div class="cadastro">
+        Usuário: <input type="text" id="ipt_user">
+        Senha: <input type="text" id="ipt_senha">
+
+        <button onclick="cadastrar()">Cadastrar</button>
+        <div id="div_mensagem"></div>
+    </div>
+
+    <div class="login" style="display: none;">
+        Usuário: <input type="text" id="ipt_user_login">
+        Senha: <input type="text" id="ipt_senha_login">
+        Grupo: <input type="text" id="ipt_grupo_login">
+        <button onclick="acessarClube()">Acessar Clube</button>
+        <div id="div_mensagem_login"></div>
+    </div>
+</body>
+
+</html>
+
+<script>
+
+    var usuarioCadastrado = ""; // Variáveis globais para armazenar dados do usuário
+    var senhaCadastrada = "";
+    var grupoCadastrado = 0;
+    
+    
+    function cadastrar() {
+        var usuario = ipt_user.value;
+        var mensagem = "";
+
+        // VERIFICAR SE HÁ CARACTERES ESPECIAIS
+        if (usuario.includes('!') ||
+            usuario.includes('@') ||
+            usuario.includes('#') ||
+            usuario.includes('$') ||
+            usuario.includes('%') ||
+            usuario.includes('&')) {
+            mensagem += `Usuário inválido!O usuário não pode conter caracteres especiais. <br>`
+        }
+        // VERIFICAR SE HÁ ESPAÇOS EM BRANCO
+        if (usuario.includes(' ')) {
+            mensagem += `Usuário inválido!O usuário não pode conter espaços em branco. <br>`
+        }
+
+
+        //         Senha:
+
+        // A senha deve conter pelo menos oito caracteres, incluindo:
+        // Um caractere especial(!, @, #, $, % ou &.).
+        // Uma letra maiúscula.
+        // Uma letra minúscula.
+        // Um número.
+        // Caso a senha não atenda a esses requisitos, o sistema exibirá uma mensagem de erro correspondente, como "A senha deve conter no mínimo 8 caracteres, com ao menos um caractere especial, uma letra maiúscula, uma letra minúscula e um número.".
+        //         // VERIFICAÇÃO DA SENHA 
+        var senha = ipt_senha.value;
+
+        // VERIFICAR SE A SENHA TEM NO MÍNIMO 8 CARACTERES
+        if (senha.length < 8) {
+            mensagem += `Senha inválida!A senha precisa ter no minímo 8 caracteres. <br>`
+        }
+        // VERIFICAR SE A SENHAA TEM NO MÍNIMO 8 CARACTERES
+        if (senha.includes('!') ||
+            senha.includes('@') ||
+            senha.includes('#') ||
+            senha.includes('$') ||
+            senha.includes('%') ||
+            senha.includes('&')) {
+            mensagem += ``
+        } else {
+            mensagem += `Senha inválida!A senha deve conter no mínimo um caracter especial. <br>`
+        }
+
+
+
+        let temMaiuscula = false;
+        let temMinuscula = false;
+        let temNumero = false;
+
+        for (let i = 0; i < senha.length; i++) {
+            let char = senha[i];
+            if (char >= 'A' && char <= 'Z') {        // VERIFICAR SE A SENHA TEM PELO MENOS UM CARACTERE MAIÚSCULO
+                temMaiuscula = true;
+            } else if (char >= 'a' && char <= 'z') {  // VERIFICAR SE A SENHA TEM ALGUM CARACTERE MINUSCULO
+                temMinuscula = true;
+            } else if (char >= '0' && char <= '9') {  // VERIFICAR SE A SENHA CONTÉM ALGUM NÚMERO
+                temNumero = true;
+            }
+        }
+
+        if (!temMaiuscula) {
+            mensagem += ` Senha não contém letra maiúscula  `
+        }
+        if (!temMinuscula) {
+            mensagem += `Senha não contém letra minúscula`
+        }
+        if (!temNumero) {
+            mensagem += `Senha não contém número`
+        }
+
+        // CADASTRO E GRUPO
+
+        // GERAR GRUPO ALEATÓRIO
+        var grupo = Math.floor(Math.random() * 4) + 1;
+        var mensagemSucesso = `Cadastro realizado com sucesso!`
+
+
+
+        if (grupo == 1) {
+            mensagemSucesso += `Grupo Ouro: Desconto de 20% em todas as compras.`
+        } else if (grupo == 2) {
+            mensagemSucesso += `Grupo Prata: Desconto de 15% em todas as compras.`
+        } else if (grupo == 3) {
+            mensagemSucesso += `Grupo Bronze: Desconto de 10% em todas as compras.`
+        } else {
+            mensagemSucesso += `Grupo Cobre: Desconto de 5% em todas as compras.`
+        }
+
+
+        // SALVAR USUÁRIO E SENHA
+        usuarioCadastrado = usuario;
+        senhaCadastrada = senha;
+
+        // LIMPAR OS CAMPOS DE CADASTRO
+        ipt_user.value = "";
+        ipt_senha.value = "";
+
+
+
+        div_mensagem.innerHTML = mensagemSucesso;
+
+        // EXIBIR A SEÇÃO DE LOGIN
+        document.querySelector(".login").style.display = "block";
+    }
+
+    function acessarClube() {
+        var usuarioLogin = ipt_user_login.value;
+        var senhaLogin = ipt_senha_login.value;
+        var grupoLogin = parseInt(ipt_grupo_login.value);
+        var mensagem = "";
+
+        // VALIDAR LOGIN
+        if (usuarioLogin === usuarioCadastrado && senhaLogin === senhaCadastrada && grupoLogin == grupoCadastrado) {
+            realizarCompra(); // Chama a função de compra se o login for bem-sucedido
+        } else {
+            mensagem = "Login Inválido! Informações não correspondem.";
+            div_mensagem_login.innerHTML = mensagem; // Exibe mensagem de erro
+        }
+    }
+
+
+    function realizarCompra() {
+        // Remover todos os campos e botões
+        document.querySelector(".cadastro").style.display = "none";
+        document.querySelector(".login").style.display = "none";
+
+        // Gerar quantidade e preço médio
+        var quantidade = Math.floor(Math.random() * 10) + 1; // 1 a 10
+        var precoMedio = (Math.random() * 90 + 10).toFixed(2); // Preço entre R$10,00 e R$100,00
+        var valorTotal = (quantidade * precoMedio).toFixed(2); // Valor total antes do desconto
+
+
+        // CALCULAR O DESCONTO
+         var descontoPercentual = 0; // Inicializa o desconto
+
+        if (grupoCadastrado === 1) {
+            descontoPercentual = 0.20; 
+        } else if (grupoCadastrado === 2) {
+            descontoPercentual = 0.15; 
+        } else if (grupoCadastrado === 3) {
+            descontoPercentual = 0.10; 
+        } else if (grupoCadastrado === 4) {
+            descontoPercentual = 0.05; 
+        }
+
+        descontoValor = (valorTotal * descontoPercentual).toFixed(2);
+        valorFinal = (valorTotal - descontoValor).toFixed(2);
+
+
+        // Exibir extrato da compra
+        var extrato = `
+            Extrato de Compra<br>
+            ------------------------<br>
+            Quantidade de produtos: ${quantidade}<br>
+            Preço médio por produto: R$${precoMedio}<br>
+            Valor original: R$${valorTotal}<br>
+            Desconto: ${(descontoPercentual * 100).toFixed(0)}% (-R$${descontoValor})<br>
+            Valor final: R$${valorFinal}
+        `;
+
+        // Exibir o extrato
+        div_mensagem.innerHTML = extrato;
+    }
+
+
+
+
+
+
+
+
+</script>
