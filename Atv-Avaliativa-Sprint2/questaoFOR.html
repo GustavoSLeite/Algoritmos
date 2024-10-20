@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <div id="vendas">
+        <b>----------ABERTURA DO QUIOSQUE----------</b> <br>
+        <br>
+        Digite a quantidade de água engarrafada:
+        <input type="text" id="input_qtdAgua"> <br>
+        Digite a quantidade de coco fechado:
+        <input type="text" id="input_qtdCoco"> <br>
+        <button onclick="controleVendas()">Abrir o quiosque</button>
+    </div>
+</body>
+
+</html>
+<script>
+    var estoqueAgua = 0;
+    var estoqueCoco = 0;
+    var quantiaVendasCoco = 0;
+    var quantiaVendasAgua = 0;
+
+    function controleVendas() {
+        var qtdAgua = Number(input_qtdAgua.value);
+        var qtdCoco = Number(input_qtdCoco.value);
+
+        if (qtdAgua >= 100 && qtdCoco >= 200) {
+            if (qtdAgua <= 1000) {
+                alert("Engarrafe mais água de coco")
+            }
+            if (qtdCoco <= 2000) {
+                alert("Compre mais coco")
+            }
+
+            estoqueAgua = qtdAgua;
+            estoqueCoco = qtdCoco;
+
+            vendas.innerHTML =
+                `
+                <b>----------ESTOQUE INICIAL----------</b> <br>
+                <br>
+                Agua engarrafada: <b>${estoqueAgua}</b><br>
+                Coco fechado: <b>${estoqueCoco}</b><br>
+                <br>
+                <b>----------REGISTRO DAS OPERAÇÕES DE VENDA----------</b> <br>
+                <br>
+                Digite a quantidade de produto vendido:
+                <input type="text" id="input_qtdProdutoVendido">
+                O produto:
+                <select id="produto">
+                <option value="Coco fechado">Coco fechado</option>
+                <option value="Agua engarrafada">Água engarrafada</option>
+                </select>
+                <button style="background-color: green" onclick="registrarVenda()">Registrar a Venda</button>
+                <button style="background-color: red" onclick="encerrarVenda()">Encerrar o turno</button> <br>
+                <span id="registroVendas">
+                    </span>
+                `
+        } else if (qtdAgua < 100) {
+            alert("Com essa quantidade de Água engarrafada não dá para abrir o quiosque")
+        } else {
+            alert("Com essa quantidade de Coco fechado não dá para abrir o quiosque")
+        }
+    }
+
+    function registrarVenda() {
+        var qtdProduto = Number(input_qtdProdutoVendido.value);
+        var nomeProduto = produto.value;
+
+        if (nomeProduto == "Coco fechado") {
+            quantiaVendasCoco += qtdProduto
+            estoqueCoco -= qtdProduto
+            registroVendas.innerHTML += `Com a venda de ${qtdProduto} de ${nomeProduto} o saldo no estoque é de ${estoqueCoco}, <br>`
+        } else {
+            quantiaVendasAgua += qtdProduto
+            estoqueAgua -= qtdProduto
+            registroVendas.innerHTML += `Com a venda de ${qtdProduto} de ${nomeProduto} o saldo no estoque é de ${estoqueAgua}, <br>`
+        }
+    }
+
+    function encerrarVenda() {
+        vendas.innerHTML =
+            `
+       <b> Vendas de Água engarrafada </b> <br>
+       <br>
+        Saldo de produto no estoque: ${estoqueAgua} <br>
+        Quantidade de vendas: ${quantiaVendasAgua} <br>
+        Porcentagem das vendas: ${quantiaVendasAgua / (estoqueAgua + quantiaVendasAgua) * 100}% <br>
+
+<br>
+
+       <b> Vendas de Coco fechado </b> <br>
+       <br>
+        Saldo de produto no estoque: ${estoqueCoco} <br>
+        Quantidade de vendas: ${quantiaVendasCoco} <br>
+        Porcentagem das vendas: ${quantiaVendasCoco / (estoqueCoco + quantiaVendasCoco) * 100}%
+        `
+    }
+</script>
