@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vetor - Aula 1</title>
+</head>
+
+<body>
+    <input type="text" id="ipt_nome">
+    <button onclick="cadastrar()">Adicionar</button>
+    <button onclick="pesquisar()">Pesquisar</button>
+
+    <button onclick="ver_detalhes()">Ver detalhes</button>
+    <div id="div_mensagem"></div>
+
+
+</body>
+
+</html>
+
+<script>
+
+    var lista_nomes = [];
+
+    function cadastrar() {
+
+        var nome = ipt_nome.value
+
+
+        lista_nomes.push(nome);
+
+        console.log(lista_nomes)
+        console.log(`${lista_nomes}`);
+
+        div_mensagem.innerHTML = `${lista_nomes} <br>`;
+
+    }
+
+    function pesquisar() {
+
+        var nome = ipt_nome.value;
+
+        var incluso = lista_nomes.includes(nome);
+
+        if (incluso) {
+            div_mensagem.innerHTML = ` O nome ${nome} existe na lista!`
+        } else {
+            div_mensagem.innerHTML =
+                `  <b style="color: red"> 
+                O nome ${nome} não existe na lista! </b> `
+
+        }
+
+    }
+
+    function ver_detalhes() {
+
+        var nome = ipt_nome.value
+
+        div_mensagem.innerHTML = `
+            Primeira posição: ${lista_nomes[0]} <br>
+            Terceira posição: ${lista_nomes[2]}   <br>
+            Última posição:  ${lista_nomes[lista_nomes.length - 1]}   <br>
+            `
+
+        //             var nome = ipt_nome.value
+
+        // var pimeiro_item = lista_nomes[0]
+        // var terceiro_item = lista_nomes[2]
+        // var ultimo_item = lista_nomes[lista_nomes.length - 1]
+
+        //     div_mensagem.innerHTML = `
+        //     Primeira posição: ${primeiro_item} <br>
+        //     Terceira posição: ${terceiro_item}   <br>
+        //     Última posição:  ${ultimo_item}   <br>
+        //     `
+    }
+
+    // var teste = "TESTE"
+    // teste.includes("E");
+
+
+</script>
