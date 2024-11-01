@@ -1,0 +1,69 @@
+<!-- 3. Crie um programa o qual:
+
+a) O usuário vá cadastrando os bairros onde morou; Ele digitará o nome do lugar em um campo e clicará em "Cadastrar bairro". 
+
+b) Deve haver um outro campo, em que digita apenas um número, indicando o local onde morou, a partir do número 1 (porque os usuários comuns contam as coisas assim).
+
+c) Após clicar em "Relembrar moradia", faça: 
+
+
+c.1) Se ele informar "1", exiba o primeiro bairro cadastrado; Se informar "2", exiba o segundo bairro cadastrado e assim por diante ... 
+
+c.2) Porém, ao informar um número maior do que a quantidade de bairros cadastrados, exiba: 
+
+"Você ainda não morou num Xº bairro!" 
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 - Ex03 (Array)</title>
+</head>
+<body>
+    <label>Bairro:</label>
+    <input type="text" id="ipt_bairroDigitado">
+    <button onclick="cadastrarBairro()">Cadastrar bairro</button>
+
+    <label>Número:</label>
+    <input type="number" id="ipt_numero">
+    <button onclick="relembrarMoradia()">Relembrar moradia</button>
+
+    <div id="div_mensagem"></div>
+
+    
+</body>
+</html>
+
+<script>
+    var bairros = [];
+    var mensagem = "";
+
+    function cadastrarBairro() {
+        var bairroDigitada = ipt_bairroDigitado.value;
+        bairros.push(bairroDigitada);
+
+        div_mensagem.innerHTML = mensagem;
+    }
+
+    function relembrarMoradia() {
+        var bairroDigitada = ipt_bairroDigitado.value;
+        var numeroDigitado = ipt_numero.value;
+
+
+ 
+//  c.1) Se ele informar "1", exiba o primeiro bairro cadastrado; Se informar "2", exiba o segundo bairro cadastrado e assim por diante ... 
+
+if(numeroDigitado > 0 && numeroDigitado <= bairros.length){
+
+    mensagem = `Você morou no ${numeroDigitado} no bairro ${bairroDigitada[numeroDigitado - 1]}`
+
+} else{
+    mensagem = `Você ainda não morou num ${numeroDigitado} bairro.`
+}
+
+div_mensagem.innerHTML = mensagem;
+
+  }
+
+</script>

@@ -1,0 +1,116 @@
+<!-- 2. Crie um programa o qual: 
+
+a) Tenha um campo "Destino de viagem" e um botão "Adicionar";
+
+b) Ao clicar no botão, esse destino deve ser adicionado a uma lista (que não aparece para o usuário). 
+
+Obs: Não existe problema em serem registrados valores repetidos.
+
+c) Devem haver os botões: 
+
+  "Primeira viagem" - Ao ser clicado, aparece abaixo o primeiro local cadastrado ou "Ainda não viajou" - caso nenhuma (zero viagens) viagem tenha sido registrada;
+
+  "Terceira viagem" - Ao ser clicado, aparece abaixo o terceiro local cadastrado ou "Ainda fez a terceira viagem", caso não tenha feito, ao menos, três viagens;
+
+  "Última viagem" - Ao ser clicado, aparece abaixo o último local cadastrado ou "Ainda não viajou", caso nenhuma (zero viagens) viagem tenha sido registrada. -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 - Ex02 (Array)</title>
+</head>
+
+<body>
+    <label>Destino de viagem:</label>
+    <input type="text" id="ipt_destinoViagem">
+
+    <button onclick="adicionarDestino()">Adicionar</button>
+
+    <button onclick="primeiraViagem()">Primeira viagem</button>
+    <button onclick="terceiraViagem()">Terceira viagem</button>
+    <button onclick="ultimaViagem()">Última viagem</button>
+
+    <div id="div_mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+    var destinos = []; // array de destinos, que não será vísivel para o usuário
+    var mensagem = "";
+
+    // primeira etapa: adicionando os detinos que o usuário digitou na lista de destinos.
+    function adicionarDestino() {
+        var destinoViagem = ipt_destinoViagem.value;
+
+
+
+        destinos.push(destinoViagem);
+
+        console.log(`${destinos}`)
+
+    }
+
+    //segunda etapa:
+    // Função sobre a primeira viagem
+    //  "Primeira viagem" - Ao ser clicado, aparece abaixo o primeiro local cadastrado ou "Ainda não viajou" - caso nenhuma (zero viagens) viagem tenha sido registrada;
+
+
+    function primeiraViagem() {
+        var destinoViagem = ipt_destinoViagem.value;
+
+        if (destinos.length > 0) {
+
+            mensagem = `Primeira Viagem: ${destinos[0]}`
+
+        } else {
+
+            mensagem = `Ainda não viajou`
+
+        }
+
+
+        div_mensagem.innerHTML = mensagem;
+
+    }
+
+    // Função sobre a terceira viagem
+    // "Terceira viagem" - Ao ser clicado, aparece abaixo o terceiro local cadastrado ou "Ainda fez a terceira viagem", caso não tenha feito, ao menos, três viagens;
+    function terceiraViagem() {
+        var destinoViagem = ipt_destinoViagem.value;
+
+        if (destinos.length >= 3) {
+
+            mensagem = `Terceira Viagem: ${destinos[2]}`
+
+        } else {
+            mensagem = `Ainda fez a terceira viagem`
+        }
+
+
+        div_mensagem.innerHTML = mensagem;
+
+    }
+    
+    // Função sobre a última vaigem
+    // "Última viagem" - Ao ser clicado, aparece abaixo o último local cadastrado ou "Ainda não viajou", caso nenhuma (zero viagens) viagem tenha sido registrada. 
+    function ultimaViagem() {
+        var destinoViagem = ipt_destinoViagem.value;
+
+        if (destinos.length > 0) {
+
+            mensagem = `Última viagem: ${destinos[destinos.length - 1]}`
+
+        } else {
+            mensagem = `Ainda não viajou`
+        }
+
+        div_mensagem.innerHTML = mensagem;
+    }
+
+
+
+</script>

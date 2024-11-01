@@ -1,0 +1,67 @@
+<!-- 4. Crie um programa o qual:
+
+a) O usuário informa os nomes dos filmes que mais gosta, começando pelo seu favorito e depois o segundo que mais gosta e assim por diante. 
+
+b) Para cadastrar cada filme, ele clica em "Cadastrar filme";
+
+c) Crie um botão "Ver Favoritos" que, ao ser clicado, exibe os filmes favoritos;
+
+d) Exiba também, abaixo de tudo, uma frase assim:  "Total: X";
+
+d.1) Após a frase acima, mostre as seguintes frases: 
+
+ O que filme que mais gosta é A.
+
+ E desses, o que menos gosta é B 
+
+  Obs: "A" é o primeiro filme cadastrado e "B" o último.
+
+  -->
+  <!DOCTYPE html>
+  <html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 - Ex 04 (Array) </title>
+  </head>
+  <body>
+<label>Filmes:</label>
+<input type="text" id="ipt_filmes">
+
+<button onclick="cadastrarFilme()">Cadastrar filme</button>
+<button onclick="verFavoritos()">Ver favoritos</button>
+<div id="div_mensagem"></div>
+    
+  </body>
+  </html>
+
+  <script>
+
+    var filmes = [];
+
+    function cadastrarFilme () {
+      var filmeDigitado = ipt_filmes.value;
+      var mensagem = "";
+     
+
+      filmes.push(filmeDigitado);
+      document.getElementById('ipt_filmes').value = ''; // limpar o campo de entrada
+
+    }
+
+    function verFavoritos () {
+      var filmeDigitado = ipt_filmes.value;
+      var mensagem = "";
+
+      if(filmes.length > 0){
+        mensagem = 
+        `Total: ${filmes.length} <br>
+         O que filme que mais gosta é ${filmes[0]}. <br>
+         E desses, o que menos gosta é ${filmes[filmes.length - 1]}.
+
+        `
+      }
+
+      div_mensagem.innerHTML = mensagem;
+    }
+  </script>
