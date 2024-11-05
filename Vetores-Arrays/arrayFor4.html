@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Iteração de Frase</title>
+</head>
+
+<body>
+
+    <label>Digite uma frase:</label>
+    <input type="text" id="ipt_frase">
+
+    <button onclick="enviarFrase()">Enviar</button>
+    <div id="resultado"></div>
+
+    <script>
+
+        function enviarFrase() {
+            var frase = document.getElementById('ipt_frase').value;
+            var resultadoDiv = document.getElementById('resultado');
+            var resultadoHTML = '';
+
+            for (var i = 0; i < frase.length; i++) {
+                resultadoHTML += 'Índice ' + i + ': ' + frase[i] + '<br>';
+
+            }
+
+            
+        resultadoDiv.innerHTML = resultadoHTML;
+
+        }
+
+
+
+
+    </script>
+</body>
+
+</html>
