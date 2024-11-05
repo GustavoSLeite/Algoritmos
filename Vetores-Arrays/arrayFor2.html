@@ -1,9 +1,11 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <title>Iteração de Frase</title>
 </head>
+
 <body>
     <div id="resultado"></div>
 
@@ -12,11 +14,26 @@
         var resultadoDiv = document.getElementById('resultado');
         var resultadoHTML = '';
 
+
         for (var i = 0; i < frase.length; i++) {
-            resultadoHTML += 'Índice ' + i + ': ' + frase[i] + '<br>';
+            resultadoHTML += ` Índice ${i}: ${frase[i]} <br> `;
+
+
+
+
         }
 
+        resultadoHTML += `Total: ${frase.length}`
+
+
+
         resultadoDiv.innerHTML = resultadoHTML;
+
+
+
+
+
     </script>
 </body>
+
 </html>
