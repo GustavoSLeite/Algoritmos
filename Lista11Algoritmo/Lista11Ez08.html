@@ -1,0 +1,57 @@
+<!-- 8 (ENTREGAR). Crie um programa o qual:  
+
+a) O usuário cadastre nomes de alunos;  
+
+b) Porém, na medida que vai cadastrando, aparecem um abaixo do outro na ordem inversa em que foram cadastrados (ou seja, o último sempre fica no topo, o penúltimo em abaixo dele e assim por diante).  
+
+   -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 Ex08 (Array com FOR)</title>
+
+    Digite um nome: <input type="text" id="ipt_nome">
+    <button onclick="cadastrarAluno()">Cadastrar Aluno</button>
+  
+    <div id="div_mensagem"></div>
+</head>
+
+<body>
+
+</body>
+
+</html>
+
+
+
+<script>
+
+    var alunos = [];
+
+    function cadastrarAluno() {
+        var nomeAluno = ipt_nome.value;
+        var mensagem = "";
+
+        alunos.push(nomeAluno);
+
+        for (var i = alunos.length - 1; i >= 0; i--) {
+            mensagem += `${alunos[i]} <br>`
+        }
+
+        div_mensagem.innerHTML = mensagem;
+
+
+     
+
+
+    }
+
+   
+
+</script>
+
+

@@ -1,0 +1,58 @@
+<!-- 12 (ENTREGAR). Crie um programa o qual:  
+
+a) Pergunte ao usuário o nome de um de seus filhos; 
+
+b) Ao clicar em "Cadastrar", o nome do filho fica cadastrado num lugar que o usuário não vê, porém não permita o cadastro de nomes repetidos.  
+
+b.1) Em caso de tentativa de nome repetido, exiba um alert com a frase "Não pode mais de 1 filho com o mesmo nome!"  
+
+c) Ao clicar em "Atualizar Família", deve aparecer um texto como este abaixo:  
+
+   Você tem X filhos  
+
+   Seu custo mensal será aproximadamente R$Y se colocá-los em escola particular ou R$Z se eles estudarem em escola pública  
+
+   Em que X é a quantidade de filhos cadastrados.  
+
+   Y é o resultado do seguinte cálculo: filhos x 3000 
+
+   Z é o resultado do seguinte cálculo: filhos x 1500  -->
+   <!DOCTYPE html>
+   <html lang="en">
+   <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 Ex 12 (Array com FOR)</title>
+   </head>
+   <body>
+    <label>Digite o nome de seus filhos:</label>
+    <input type="text" id="ipt_nomeFilhos">
+    <button onclick="cadastrarNomeFilho()">Cadastrar</button>
+    <div id="div_mensagem"></div>
+    
+   </body>
+   </html>
+
+   <script>
+
+    var nomesFilhos = [];
+    function cadastrarNomeFilho() {
+
+        var nomeFilho = document.getElementById('ipt_nomeFilhos').value;
+        var mensagem = "";
+
+        nomesFilhos.push(nomeFilho);
+        console.log(nomesFilhos)
+
+        
+
+        if(nomeFilho == find(nomesFilhos)){
+           mensagem +=  "Não pode mais de 1 filho com o mesmo nome!"  
+
+        }
+
+
+
+div_mensagem.innerHTML = mensagem;
+    }
+   </script>

@@ -1,0 +1,82 @@
+<!-- 10 (ENTREGAR). Crie um programa o qual:  
+
+a) O usuário vá registrando os nomes das linhas de ônibus que ele pegou durante a semana. Ele digita o nome da linha e clica em "Gravar busão"; 
+
+b) Cada vez que o botão é clicado o programa deve mostrar a lista de linhas de ônibus abaixo do botão e em ordem inversa (do último para o primeiro);  
+
+c) Deve haver outro campo em que ele pesquisa por uma linha que já tenha pego. Ao clicar em "Pesquisar", deve ver uma dessas frases, abaixo da lista de linhas de ônibus que já pegou:  
+
+   Você nunca pegou essa linha (caso não tenha cadastrado a linha em questão)  
+
+   OU  
+
+   Você já pegou essa linha 4 vezes, nessa ordem: 2, 4, 8, 9  
+
+   (supondo que ele cadastrou a mesma linha na 2ª vez, na 4ª vez, na 8ª vez e na 9ª vez).  -->
+
+
+    <!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 - Ex 10 (Array com FOR)</title>
+</head>
+
+<body>
+    <label>Nome da linha</label>
+    <input type="text" id="ipt_nomeLinha">
+    <button onclick="gravar()">Gravar busão</button>
+   
+    <div id="div_mensagem"></div>
+
+    <label>Pesquisar linha</label>
+    <input type="text" id="ipt_pesquisaLinha">
+    <button onclick="pesquisar()">Pesquisar Busão</button>
+    <div id="div_resultado"></div>
+
+</body>
+
+</html>
+
+<script>
+    var linhas = [];
+    var registros = {};
+
+    function gravar() {
+        var nomeLinha = document.getElementById('ipt_nomeLinha').value;
+        var mensagem = "";
+
+        linhas.push(nomeLinha);
+        if (!registros[nomeLinha]) {
+            registros[nomeLinha] = [];
+        }
+        registros[nomeLinha].push(linhas.length);
+
+        for (var i = linhas.length - 1; i >= 0; i--) {
+            mensagem += `${linhas[i]} <br>`;
+        }
+
+        document.getElementById('div_mensagem').innerHTML = mensagem;
+    }
+
+    function pesquisar() {
+        var nomeLinha = document.getElementById('ipt_pesquisaLinha').value;
+        var resultado = document.getElementById('div_resultado');
+
+        if (registros[nomeLinha]) {
+            var vezes = registros[nomeLinha].length;
+            var ordem = "";
+            for (var i = 0; i < registros[nomeLinha].length; i++) {
+                ordem += registros[nomeLinha][i];
+                if (i < registros[nomeLinha].length - 1) {
+                    ordem += ", ";
+                }
+            }
+            resultado.innerHTML = `Você já pegou essa linha ${vezes} vezes, nessa ordem: ${ordem}`;
+        } else {
+            resultado.innerHTML = 'Você nunca pegou essa linha';
+        }
+    }
+</script>
