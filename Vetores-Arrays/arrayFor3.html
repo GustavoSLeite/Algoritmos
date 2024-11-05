@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista de Contatos</title>
+</head>
+<body>
+    <div>
+        <label for="nome">Nome:</label>
+        <input type="text" id="nome">
+    </div>
+    <div>
+        <label for="sobrenome">Sobrenome:</label>
+        <input type="text" id="sobrenome">
+    </div>
+    <button onclick="adicionarContato()">Adicionar Contato</button>
+    <div id="lista-contatos"></div>
+
+    <script>
+        var contatos = [];
+
+        function adicionarContato() {
+            var nome = document.getElementById('nome').value;
+            var sobrenome = document.getElementById('sobrenome').value;
+            
+            if (nome && sobrenome) {
+                contatos.push({ nome: nome, sobrenome: sobrenome });
+                atualizarLista();
+                
+                // Limpa os campos de input após adicionar
+                document.getElementById('nome').value = '';
+                document.getElementById('sobrenome').value = '';
+            }
+        }
+
+        function atualizarLista() {
+            var listaDiv = document.getElementById('lista-contatos');
+            listaDiv.innerHTML = '';
+            
+            for (var i = 0; i < contatos.length; i++) {
+                listaDiv.innerHTML += 'Contato ' + (i + 1) + ': ' + contatos[i].nome + ' ' + contatos[i].sobrenome + '<br>';
+            }
+        }
+    </script>
+</body>
+</html>

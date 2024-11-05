@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Iteração de Frase</title>
+</head>
+<body>
+    <div id="resultado"></div>
+
+    <script>
+        var frase = "Bom Dia!"; // Array de caracteres
+        var resultadoDiv = document.getElementById('resultado');
+        var resultadoHTML = '';
+
+        for (var i = 0; i < frase.length; i++) {
+            resultadoHTML += 'Índice ' + i + ': ' + frase[i] + '<br>';
+        }
+
+        resultadoDiv.innerHTML = resultadoHTML;
+    </script>
+</body>
+</html>
