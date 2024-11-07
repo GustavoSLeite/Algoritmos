@@ -13,70 +13,72 @@ c) Deve haver outro campo em que ele pesquisa por uma linha que já tenha pego. 
    Você já pegou essa linha 4 vezes, nessa ordem: 2, 4, 8, 9  
 
    (supondo que ele cadastrou a mesma linha na 2ª vez, na 4ª vez, na 8ª vez e na 9ª vez).  -->
-
-
-    <!DOCTYPE html>
-<html lang="en">
-
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista 11 - Ex 10 (Array com FOR)</title>
-</head>
-
-<body>
-    <label>Nome da linha</label>
-    <input type="text" id="ipt_nomeLinha">
-    <button onclick="gravar()">Gravar busão</button>
+   <!DOCTYPE html>
+   <html lang="pt-BR">
+   <head>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Registro de Linhas de Ônibus</title>
+      
+   </head>
+   <body>
+       <div class="container">
+          
+           <input type="text" id="linhaInput" placeholder="Digite o nome da linha">
+           <button onclick="gravarBusao()">Gravar busão</button>
+           <div id="linhasDiv"></div>
    
-    <div id="div_mensagem"></div>
-
-    <label>Pesquisar linha</label>
-    <input type="text" id="ipt_pesquisaLinha">
-    <button onclick="pesquisar()">Pesquisar Busão</button>
-    <div id="div_resultado"></div>
-
-</body>
-
-</html>
-
-<script>
-    var linhas = [];
-    var registros = {};
-
-    function gravar() {
-        var nomeLinha = document.getElementById('ipt_nomeLinha').value;
-        var mensagem = "";
-
-        linhas.push(nomeLinha);
-        if (!registros[nomeLinha]) {
-            registros[nomeLinha] = [];
-        }
-        registros[nomeLinha].push(linhas.length);
-
-        for (var i = linhas.length - 1; i >= 0; i--) {
-            mensagem += `${linhas[i]} <br>`;
-        }
-
-        document.getElementById('div_mensagem').innerHTML = mensagem;
-    }
-
-    function pesquisar() {
-        var nomeLinha = document.getElementById('ipt_pesquisaLinha').value;
-        var resultado = document.getElementById('div_resultado');
-
-        if (registros[nomeLinha]) {
-            var vezes = registros[nomeLinha].length;
-            var ordem = "";
-            for (var i = 0; i < registros[nomeLinha].length; i++) {
-                ordem += registros[nomeLinha][i];
-                if (i < registros[nomeLinha].length - 1) {
-                    ordem += ", ";
-                }
-            }
-            resultado.innerHTML = `Você já pegou essa linha ${vezes} vezes, nessa ordem: ${ordem}`;
-        } else {
-            resultado.innerHTML = 'Você nunca pegou essa linha';
-        }
-    }
-</script>
+          
+           <input type="text" id="pesquisaInput" placeholder="Digite o nome da linha para pesquisar">
+           <button onclick="pesquisarLinha()">Pesquisar</button>
+           <div id="resultadoPesquisa"></div>
+       </div>
+   
+       <script>
+           var linhas = [];
+   
+           function gravarBusao() {
+               var linhaInput = document.getElementById("linhaInput");
+               var linha = linhaInput.value;
+               if (linha) {
+                   linhas.push(linha);
+                   mostrarLinhasInvertidas();
+                   linhaInput.value = "";  
+               }
+           }
+   
+           function mostrarLinhasInvertidas() {
+               var linhasDiv = document.getElementById("linhasDiv");
+               linhasDiv.innerHTML = "";  
+               for (var i = linhas.length - 1; i >= 0; i--) {
+                   linhasDiv.innerHTML += (i + 1) + ". " + linhas[i] + "<br>";
+               }
+           }
+   
+           function pesquisarLinha() {
+               var pesquisaInput = document.getElementById("pesquisaInput").value;
+               var resultadoPesquisa = document.getElementById("resultadoPesquisa");
+               var indices = [];
+               var count = 0;
+   
+               for (var i = 0; i < linhas.length; i++) {
+                   if (linhas[i] === pesquisaInput) {
+                       indices.push(i + 1);
+                       count++;
+                   }
+               }
+   
+               if (count === 0) {
+                   resultadoPesquisa.innerHTML = "Você nunca pegou essa linha";
+               } else {
+                   var indicesText = "";
+                   for (var j = 0; j < indices.length; j++) {
+                       indicesText += (j > 0 ? ", " : "") + indices[j];
+                   }
+                   resultadoPesquisa.innerHTML = "Você já pegou essa linha " + count + " vezes, nessa ordem: " + indicesText;
+               }
+           }
+       </script>
+   </body>
+   </html>
+   

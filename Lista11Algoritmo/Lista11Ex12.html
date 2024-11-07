@@ -17,42 +17,55 @@ c) Ao clicar em "Atualizar Família", deve aparecer um texto como este abaixo:
    Y é o resultado do seguinte cálculo: filhos x 3000 
 
    Z é o resultado do seguinte cálculo: filhos x 1500  -->
+  
+
+
+
    <!DOCTYPE html>
-   <html lang="en">
+   <html lang="pt-BR">
    <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista 11 Ex 12 (Array com FOR)</title>
+       <meta charset="UTF-8">
+       <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       <title>Cadastro de Filhos</title>
    </head>
    <body>
-    <label>Digite o nome de seus filhos:</label>
-    <input type="text" id="ipt_nomeFilhos">
-    <button onclick="cadastrarNomeFilho()">Cadastrar</button>
-    <div id="div_mensagem"></div>
-    
+       <input type="text" id="filhoInput" placeholder="Digite o nome do seu filho">
+       <button onclick="cadastrarFilho()">Cadastrar</button>
+       
+       <button onclick="atualizarFamilia()">Atualizar Família</button>
+       
+       <div id="familiaInfo"></div>
+   
+       <script>
+           var filhos = [];
+           
+           function cadastrarFilho() {
+               var filhoInput = document.getElementById("filhoInput");
+               var nomeFilho = filhoInput.value;
+               var mensagem = "";
+               if (nomeFilho !== "") {
+                   if (filhos.includes(nomeFilho)) {
+                       mensagem = "Não pode mais de 1 filho com o mesmo nome!";
+                   } else {
+                       filhos.push(nomeFilho);
+                       filhoInput.value = "";  
+                   }
+               }
+               document.getElementById("familiaInfo").innerHTML = mensagem;
+           }
+   
+           function atualizarFamilia() {
+               var familiaInfo = document.getElementById("familiaInfo");
+               var quantidadeFilhos = filhos.length;
+               var custoParticular = quantidadeFilhos * 3000;
+               var custoPublica = quantidadeFilhos * 1500;
+               
+               familiaInfo.innerHTML = `
+                   Você tem ${quantidadeFilhos} filhos<br>
+                   Seu custo mensal será aproximadamente R$${custoParticular} se colocá-los em escola particular ou R$${custoPublica} se eles estudarem em escola pública
+               `;
+           }
+       </script>
    </body>
    </html>
-
-   <script>
-
-    var nomesFilhos = [];
-    function cadastrarNomeFilho() {
-
-        var nomeFilho = document.getElementById('ipt_nomeFilhos').value;
-        var mensagem = "";
-
-        nomesFilhos.push(nomeFilho);
-        console.log(nomesFilhos)
-
-        
-
-        if(nomeFilho == find(nomesFilhos)){
-           mensagem +=  "Não pode mais de 1 filho com o mesmo nome!"  
-
-        }
-
-
-
-div_mensagem.innerHTML = mensagem;
-    }
-   </script>
+   
