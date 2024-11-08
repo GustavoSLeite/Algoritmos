@@ -16,3 +16,55 @@ b) Tenha um botão "Analisar histórico" que ao ser clicado, o número é cadast
 
    Menor: 5  
  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Lista 11 Ex14 (Array com For)</title>
+</head>
+
+<body>
+  <label>Digite um número qualquer</label>
+  <input type="text" id="ipt_numero">
+  <button onclick="analisar()">Analisar histórico</button>
+  <div id="div_mensagem"></div>
+
+
+</body>
+
+</html>
+
+
+
+<script>
+  var numeros = [];
+
+  function analisar() {
+    var num = Number(document.getElementById('ipt_numero').value);
+
+    numeros.push(num);
+    document.getElementById('ipt_numero').value = ""; // Limpa o campo de entrada
+
+    var mensagem = "";
+    var maior = numeros[0];
+    var menor = numeros[0];
+
+    for (var i = 0; i < numeros.length; i++) {
+      mensagem += `${i + 1}º Número: ${numeros[i]}<br>`;
+      if (numeros[i] > maior) {
+        maior = numeros[i];
+      }
+      if (numeros[i] < menor) {
+        menor = numeros[i];
+      }
+    }
+
+    mensagem += `<br>Maior: ${maior}<br>`;
+    mensagem += `Menor: ${menor}`;
+
+    document.getElementById('div_mensagem').innerHTML = mensagem;
+  }
+  
+</script>
