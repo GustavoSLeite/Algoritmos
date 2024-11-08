@@ -1,0 +1,69 @@
+<!-- 
+18. Crie um programa o qual:
+
+a) O usuário informa os nomes das músicas que mais gosta e clica em "Cadastrar"; 
+
+b) Ao clicar em "Exibir", as músicas vão aparecendo uma abaixo da outra, abaixo do botão. 
+
+c) Tenha dois campos "De..." e "Até...", que recebem um intervalo de dois números crescentes.
+
+d) Ao clicar em "Filtrar", deve exibir as músicas que estão dentro daquele intervalo.
+
+OBS: se o usuário informar "de 1 até 5", deve mostrar da primeira música -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 Ex18</title>
+</head>
+<body>
+ <label>Inserir música:</label>
+ <input type="text" id="ipt_musica">
+ <button onclick="cadastrarMusica()">Cadastrar</button> 
+ <button onclick="exibirMusica()">Exibir</button>  
+  <br> <label>De</label> 
+ <input type="number" id="ipt_inicio">
+ <label>Até</label>
+ <input type="number" id="ipt_final">
+ <button onclick="filtrarMusica()">Filtrar</button> 
+
+ <div id="div_mensagem"></div>
+
+</body>
+</html>
+
+<script>
+    var musicas = [];
+
+    function cadastrarMusica() {
+        var musica = document.getElementById('ipt_musica').value;
+        var mensagem = "";
+
+        musicas.push(musica);
+
+    }
+
+    function exibirMusica() {
+        var musica = document.getElementById('ipt_musica').value;
+        var mensagem = "";
+        var inicio = Number(ipt_inicio.value);
+        var final = Number(ipt_final.value);
+
+
+        for(var i = 0; i < musicas.length; i++){
+            
+             mensagem += `${musicas[i]} <br>`
+        }
+
+         div_mensagem.innerHTML = mensagem;
+        document.getElementById('ipt_musica').value;
+
+    }
+
+      
+        // terminar esse programa 
+
+
+
+</script>

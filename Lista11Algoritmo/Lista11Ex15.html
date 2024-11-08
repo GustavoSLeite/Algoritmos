@@ -38,6 +38,7 @@ O preço de venda é sempre o valor da compra mais 25%.
 </body>
 </html>
 <script>
+   var produtos = [];
    var precoProdutos = [];
 
    function cadastrarProduto() {
@@ -45,7 +46,11 @@ O preço de venda é sempre o valor da compra mais 25%.
       var preco = Number( document.getElementById('ipt_preco').value);
       var mensagem = "";
 
+
+      
       precoProdutos.push(preco);
+      produtos.push(produto);
+
    }
 
    function mostrarProdutos() {
@@ -53,14 +58,40 @@ O preço de venda é sempre o valor da compra mais 25%.
       var preco = Number( document.getElementById('ipt_preco').value);
       var mensagem = "";
 
-      for(var i = 0; i < precoProdutos.length; i++){
+      // for(var i = 0; i < precoProdutos.length; i++){
          
+      //    mensagem += 
+
+      //    `
+      //    Total de produtos: ${produtos.length}
+         
+      //    `
+      // }
+
+     mensagem +=  `Total de produtos: ${produtos.length} <br> <br>`
+      
+      for(var i = 0; i < produtos.length; i++){
+         
+         
+      }
+
+      for(var i = 0; i < precoProdutos.length; i++){
+
          mensagem += 
 
          `
-         Total de produtos: ${precoProdutos.length}
+         
+         Produto ${i + 1}: ${produtos[i]} <br>
+         Preço de compra: ${precoProdutos[i]}<br>
+         
          `
+         
       }
 
+     
+      
+      div_mensagem.innerHTML = mensagem;
+
+      
    }
 </script>

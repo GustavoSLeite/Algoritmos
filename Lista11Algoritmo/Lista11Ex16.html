@@ -1,0 +1,107 @@
+<!-- 16. Refaça a 15ª questão de tal forma que, ao final do relatório, o programa exiba:  
+
+a) O nome do produto mais caro; 
+
+b) O nome do produto mais barato; 
+
+c) A soma dos preços de compra dos produtos; 
+
+d) A média de preço de venda dos produtos.  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 Ex16</title>
+
+</head>
+
+<body>
+
+    <label>Nome do produto:</label>
+    <input type="text" id="ipt_produto">
+    <label>Preço de compra:</label>
+    <input type="number" id="ipt_preco">
+    <button onclick="cadastrarProduto()">Cadastrar</button>
+    <button onclick="mostrarProdutos()">Relatório de estoque</button>
+    <div id="div_mensagem"></div>
+
+
+
+</body>
+
+</html>
+
+<script>
+    var produtos = [];
+    var precoProdutos = [];
+
+    function cadastrarProduto() {
+        var produto = document.getElementById('ipt_produto').value;
+        var preco = Number(document.getElementById('ipt_preco').value);
+        var mensagem = "";
+
+
+
+        precoProdutos.push(preco);
+        produtos.push(produto);
+
+    }
+
+    function mostrarProdutos() {
+        var produto = document.getElementById('ipt_produto').value;
+        var preco = Number(document.getElementById('ipt_preco').value);
+        var mensagem = "";
+        var maior = precoProdutos[0];
+        var menor = precoProdutos[0];
+
+        // for(var i = 0; i < precoProdutos.length; i++){
+
+        //    mensagem += 
+
+        //    `
+        //    Total de produtos: ${produtos.length}
+
+        //    `
+        // }
+
+        mensagem += `Total de produtos: ${produtos.length} <br> <br>`
+
+        for (var i = 0; i < produtos.length; i++) {
+
+
+        }
+
+        for (var i = 0; i < precoProdutos.length; i++) {
+
+            mensagem +=
+
+                `
+          
+          Produto ${i + 1}: ${produtos[i]} <br>
+          Preço de compra: ${precoProdutos[i]}<br>
+
+     
+          
+          `
+
+            if (precoProdutos[i] > maior) {
+                maior = precoProdutos[i];
+            }
+            if (precoProdutos[i] < menor) {
+                menor = precoProdutos[i];
+            }
+
+        }
+
+        mensagem += `<br>Maior: ${maior}<br>`;
+        mensagem += `Menor: ${menor}`;
+
+
+
+        div_mensagem.innerHTML = mensagem;
+
+
+    }
+</script>
