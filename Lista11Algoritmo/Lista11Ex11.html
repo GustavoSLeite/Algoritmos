@@ -1,0 +1,60 @@
+<!-- 11. Crie um programa o qual:  
+
+a) Pergunte ao usuário o preço de um produto; 
+
+b) Ao clicar em "Cadastrar", o preço fica cadastrado num lugar que o usuário não vê; 
+
+c) Ao clicar em "Atualizar Estoque", deve aparecer a lista de preços cadastrados (em ordem inversa) e  um texto como este abaixo:  
+
+   Você tem X produtos cadastrados em estoque  
+
+   Seu estoque vale R$Y 
+
+Em que X é a quantidade de produtos cadastrados pelo usuário e Y é a soma de todos os valores.  -->
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 Ex11 - (Array)</title>
+</head>
+
+<body>
+    <label>Insira o preço do produto:</label>
+    <input type="text" id="ipt_produto">
+    <button onclick="cadastrarPreco()">Cadastrar</button>
+    <button onclick="atualizar()">Atualizar Estoque</button>
+    <div id="div_mensagem"></div>
+
+</body>
+
+</html>
+
+
+<script>
+    var precosProdutos = [];
+
+    function cadastrarPreco() {
+        var preco = document.getElementById('ipt_produto').value;
+        if (preco) {
+            precosProdutos.push(Number(preco));
+            document.getElementById('ipt_produto').value = ""; // Limpa o campo de entrada
+        }
+    }
+
+    function atualizar() {
+        var mensagem = "";
+        var valorTotal = 0;
+
+        for (var i = precosProdutos.length - 1; i >= 0; i--) {
+            mensagem += `R$${precosProdutos[i].toFixed(2)}<br>`;
+            valorTotal += precosProdutos[i];
+        }
+
+        mensagem += `<br>Você tem ${precosProdutos.length} produtos cadastrados em estoque.<br>`;
+        mensagem += `Seu estoque vale R$${valorTotal.toFixed(2)}.`;
+
+        document.getElementById('div_mensagem').innerHTML = mensagem;
+    }
+</script>

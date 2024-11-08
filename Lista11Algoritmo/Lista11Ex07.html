@@ -1,0 +1,63 @@
+<!-- 7. Crie um programa o qual:
+
+a) O usuário informa os nomes dos filmes que mais gosta e clica em "Cadastrar"; 
+b) Na medida em que vai cadastrando, os filmes vão aparecendo um abaixo do outro, abaixo do botão, só que aparecem na cor azul, depois vermelho, depois azul, depois vermelho, e assim por diante ...   -->
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Lista 11 Ex 07 - (Array com For)</title>
+</head>
+
+<body>
+    <label> Insira seus Filmes favoritos:</label>
+    <input type="text" id="filmesFavoritos">
+    <button onclick="cadastrarFilmesFavoritos()">Cadastrar</button>
+    <div id="div_mensagem"></div>
+
+</body>
+
+</html>
+
+<script>
+    var filmesFavoritos =  [];
+
+    function cadastrarFilmesFavoritos() {
+        var filmes = document.getElementById('filmesFavoritos').value;
+        var mensagem = "";
+
+        filmesFavoritos.push(filmes);
+
+        for (var i = 0; i < filmesFavoritos.length; i++) {
+
+            if (i % 2 == 0) {
+
+                mensagem +=
+                    ` 
+          <span style="color:blue;">${filmesFavoritos[i]}</span> <br>
+            
+            
+            
+            `
+            } else {
+
+                mensagem +=
+                    ` 
+          <span style="color:red;">${filmesFavoritos[i]}</span> <br>
+            
+            
+            
+            `
+
+            }
+
+
+        }
+
+        div_mensagem.innerHTML = mensagem;
+         document.getElementById('ipt_filmesFavoritos').value;
+    }
+</script>
