@@ -19,3 +19,48 @@ c) Tenha um botão "Relatório de estoque". Ao clicar nele, deve aparecer uma li
 O preço de venda é sempre o valor da compra mais 25%. 
 
 #FicaDica: De repente você pode precisar de 2 vetores aqui ;)   -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+   <meta charset="UTF-8">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Lista 11 Ex15 - (Array)</title>
+</head>
+<body>
+   <label>Nome do produto:</label>
+   <input type="text" id="ipt_produto">
+   <label>Preço de compra:</label>
+   <input type="number" id="ipt_preco">
+   <button onclick="cadastrarProduto()">Cadastrar</button>
+   <button onclick="mostrarProdutos()">Relatório de estoque</button>
+   <div id="div_mensagem"></div>
+   
+</body>
+</html>
+<script>
+   var precoProdutos = [];
+
+   function cadastrarProduto() {
+      var produto = document.getElementById('ipt_produto').value;
+      var preco = Number( document.getElementById('ipt_preco').value);
+      var mensagem = "";
+
+      precoProdutos.push(preco);
+   }
+
+   function mostrarProdutos() {
+      var produto = document.getElementById('ipt_produto').value;
+      var preco = Number( document.getElementById('ipt_preco').value);
+      var mensagem = "";
+
+      for(var i = 0; i < precoProdutos.length; i++){
+         
+         mensagem += 
+
+         `
+         Total de produtos: ${precoProdutos.length}
+         `
+      }
+
+   }
+</script>
