@@ -13,12 +13,78 @@ Faça um programa para a família Osag controlar e exibir o saldo em estoque dos
 
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Lista 11 Ex17</title>
+    <title>Controle de Estoque</title>
 </head>
+
 <body>
-    
+    <h2>Entrada</h2>
+    <label>Produto:</label>
+    <input type="text" id="ipt_produtoEntrada">
+    <label>Quantidade:</label>
+    <input type="number" id="ipt_qtdEntrada">
+    <button onclick="entradaProduto()">Cadastrar Entrada</button>
+
+    <h2>Saída</h2>
+    <label>Produto:</label>
+    <input type="text" id="ipt_produtoSaida">
+    <label>Quantidade:</label>
+    <input type="number" id="ipt_qtdSaida">
+    <button onclick="saidaProduto()">Registrar Saída</button>
+
+    <div>
+        <h2>Estoque Atual</h2>
+        <button onclick="listarEstoque()">Exibir Estoque</button>
+        <div id="estoque_atual"></div>
+    </div>
 </body>
+
 </html>
+
+<script>
+    var estoque = {};
+
+    function entradaProduto() {
+        var nome = document.getElementById('ipt_produtoEntrada').value;
+        var quantidade = Number(document.getElementById('ipt_qtdEntrada').value);
+        var mensagem = "";
+
+        if (nome && quantidade > 0) {
+            if (!estoque[nome]) {
+                estoque[nome] = 0;
+            }
+            estoque[nome] += quantidade;
+            mensagem += `Entrada de ${quantidade} unidades de ${nome} registrada com sucesso.`;
+        } else {
+            mensagem += "Por favor, insira um nome de produto válido e uma quantidade positiva.";
+        }
+    }
+
+    function saidaProduto() {
+        var nome = document.getElementById('ipt_produtoSaida').value;
+        var quantidade = Number(document.getElementById('ipt_qtdSaida').value);
+        var mensagem = "";
+
+        if (nome && quantidade > 0) {
+            if (estoque[nome] && estoque[nome] >= quantidade) {
+                estoque[nome] -= quantidade;
+                mensagem += `Saída de ${quantidade} unidades de ${nome} registrada com sucesso.`;
+            } else {
+                mensagem += "Estoque insuficiente ou produto não encontrado.";
+            }
+        } else {
+            mensagem += "Por favor, insira um nome de produto válido e uma quantidade positiva.";
+        }
+    }
+
+    function listarEstoque() {
+        var mensagem = "";
+        for (var produto in estoque) {
+            mensagem += `${produto}: ${estoque[produto]} unidades<br>`;
+        }
+        document.getElementById('estoque_atual').innerHTML = mensagem;
+    }
+</script>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    Linha: <input type="text" id="input_linha" />
+    <button onclick="registrar()">Registrar linha</button>
+
+    <br /><br />
+
+    Pesquisa: <input type="text" id="input_pesquisa" />
+    <button onclick="pesquisar()">Pesquisar</button>
+
+    <div id="div_mensagem"></div>
+  </body>
+</html>
+
+<script>
+  var lista_linhas = [];
+
+  function registrar() {
+    var mensagem = "";
+    var linha = input_linha.value;
+    lista_linhas.push(linha);
+
+    for (var index = lista_linhas.length - 1; index >= 0; index--) {
+      var linha_atual = lista_linhas[index];
+
+      mensagem += `${linha_atual} <br>`;
+    }
+
+    div_mensagem.innerHTML = mensagem;
+  }
+
+  function pesquisar() {
+    var lista_indices = [];
+    var pesquisa = input_pesquisa.value;
+
+    if (lista_linhas.includes(pesquisa)) {
+      for (var index = 0; index < lista_linhas.length; index++) {
+        var linha_atual = lista_linhas[index];
+
+        if (linha_atual == pesquisa) {
+          lista_indices.push(index + 1);
+        }
+      }
+
+      div_mensagem.innerHTML = `Você já pegou essa linha ${lista_indices.length} vezes, nessa ordem: ${lista_indices}`;
+    } else {
+      div_mensagem.innerHTML = "Você nunca pegou essa linha";
+    }
+  }
+</script>

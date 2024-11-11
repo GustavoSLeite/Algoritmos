@@ -24,6 +24,13 @@ OBS: Se o usuário solicitar "filtrar do filme 4 ao 6", deve exibir em ordem inv
     <input type="text" id="ipt_filme">
     <button onclick="cadastrarFilme()">Cadastrar</button>
     <button onclick="listarFilmes()">Listar Filmes</button>
+
+    <h3>Filtrar Filmes</h3>
+    <label>Início:</label>
+    <input type="text" id="ipt_inicio">
+    <label>Final:</label>
+    <input type="text" id="ipt_final">
+    <button onclick="filtrarFilmes()">Filtrar Filmes</button>
     <div id="div_mensagem"></div>
 
 </body>
@@ -44,12 +51,29 @@ OBS: Se o usuário solicitar "filtrar do filme 4 ao 6", deve exibir em ordem inv
         var filme = document.getElementById('ipt_filme').value;
         var mensagem = "";
 
-        for(var i = filmes.length - 1; i >= 0; i--){
+        for (var i = filmes.length - 1; i >= 0; i--) {
 
             mensagem += `${filmes[i]} <br>`
         }
-        
+
         div_mensagem.innerHTML = mensagem;
         document.getElementById('ipt_filme').value = "";
     }
+    function filtrarFilmes() {
+        var inicio = Number(document.getElementById('ipt_inicio').value);
+        var final = Number(document.getElementById('ipt_final').value);
+        var mensagem = "";
+
+        if (inicio >= 1 && final <= filmes.length && inicio <= final) {
+            for (var i = final - 1; i >= inicio - 1; i--) {
+                mensagem += `${filmes[i]} <br>`;
+            }
+        } else {
+            mensagem = "Intervalo Inválido";
+        }
+
+        document.getElementById('div_mensagem').innerHTML = mensagem;
+    }
+
+
 </script>

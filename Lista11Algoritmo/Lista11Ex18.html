@@ -61,8 +61,32 @@ OBS: se o usuário informar "de 1 até 5", deve mostrar da primeira música -->
 
     }
 
+    // function filtrarMusica() {
+    //     var inicio = Number(document.getElementById('ipt_inicio').value - 1);
+    //     var final = Number(document.getElementById('ipt_final').value - 1);
+    //     var mensagem = "";
+
+
+
+    // }
+
       
-        // terminar esse programa 
+    function filtrarMusica() {
+    var inicio = Number(document.getElementById('ipt_inicio').value) - 1; // Ajusta para índice do array
+    var final = Number(document.getElementById('ipt_final').value) - 1; // Ajusta para índice do array
+    var mensagem = "";
+
+    if (inicio >= 0 && final < musicas.length && inicio <= final) {
+        for (var i = inicio; i <= final; i++) {
+            mensagem += `${i + 1}º Música: ${musicas[i]}<br>`;
+        }
+    } else {
+        mensagem = "Intervalo inválido.";
+    }
+
+    document.getElementById('div_mensagem').innerHTML = mensagem;
+}
+
 
 
 
