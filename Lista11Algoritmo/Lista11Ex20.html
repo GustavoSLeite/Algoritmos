@@ -1,0 +1,112 @@
+<!-- Crie um programa o qual:  
+
+a) Pergunte ao usuário o preço e o nome de um produto; 
+
+b) Ao clicar em "Cadastrar", caso o preço seja positivo e o nome contenha ao menos 3 letras, registra as informações num lugar que o usuário não vê e exibe uma mensagem de sucesso. Caso contrário, exibe uma mensagem explicativa; 
+
+c) Ao clicar em "Atualizar Estoque", deve aparecer a lista de preços e o nome dos produtos cadastrados e  um texto como este abaixo:  
+
+     Você tem AAA produtos cadastrados em estoque:
+
+     1. BBB - R$CCC 
+
+     2. BBB - R$CCC  
+
+     Seu estoque vale R$DDD 
+
+Em AAA é a quantidade de produtos cadastrados pelo usuário, BBB o nome do produto, CCC o preço do produto e DDD é a soma de todos os valores. 
+
+d) Tenha uma select com as opções "Preços acima de" e "Preços abaixo de" e um campo "Valor".
+
+e) Ao clicar no botão "Filtrar Produtos", deve exibir a lista de produtos filtrada de acordo com o valor informado no campo e a opção selecionada.
+
+OBS: caso escolha "Preços acima de" e o valor seja "20", deve exibir somente produtos cadastrados com preço acima de 20 -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Loja Eletrônica</title>
+</head>
+<body>
+    <h2>Cadastro de Produto</h2>
+    <label>Nome do produto:</label>
+    <input type="text" id="ipt_nome">
+    <label>Preço:</label>
+    <input type="number" step="0.01" id="ipt_preco">
+    <button onclick="cadastrarProduto()">Cadastrar</button>
+    <div id="mensagem_cadastro"></div>
+
+    <h2>Relatório de Estoque</h2>
+    <button onclick="atualizarEstoque()">Atualizar Estoque</button>
+    <div id="div_estoque"></div>
+
+    <h2>Filtrar Produtos</h2>
+    <select id="filtro_opcao">
+        <option value="acima">Preços acima de</option>
+        <option value="abaixo">Preços abaixo de</option>
+    </select>
+    <input type="number" step="0.01" id="filtro_valor">
+    <button onclick="filtrarProdutos()">Filtrar Produtos</button>
+    <div id="div_filtro"></div>
+
+    <script>
+        var produtos = [];
+        var precos = [];
+
+        function cadastrarProduto() {
+            var nome = document.getElementById('ipt_nome').value;
+            var preco = parseFloat(document.getElementById('ipt_preco').value);
+            var mensagem = "";
+
+            if (nome.length >= 3 && preco > 0) {
+                produtos.push(nome);
+                precos.push(preco);
+                mensagem = "Produto cadastrado com sucesso!";
+            } else {
+                if (nome.length < 3) {
+                    mensagem = "O nome do produto deve ter pelo menos 3 letras.";
+                }
+                if (preco <= 0) {
+                    mensagem = "O preço do produto deve ser positivo.";
+                }
+            }
+
+            document.getElementById('mensagem_cadastro').innerHTML = mensagem;
+        }
+
+        function atualizarEstoque() {
+            var mensagem = `Você tem ${produtos.length} produtos cadastrados em estoque:<br><br>`;
+            var valorTotal = 0;
+
+            for (var i = 0; i < produtos.length; i++) {
+                mensagem += `${i + 1}. ${produtos[i]} - R$${precos[i].toFixed(2)}<br>`;
+                valorTotal += precos[i];
+            }
+
+            mensagem += `<br>Seu estoque vale R$${valorTotal.toFixed(2)}`;
+            document.getElementById('div_estoque').innerHTML = mensagem;
+        }
+
+        function filtrarProdutos() {
+            var opcao = document.getElementById('filtro_opcao').value;
+            var valor = parseFloat(document.getElementById('filtro_valor').value);
+            var mensagem = "";
+
+            if (!isNaN(valor)) {
+                for (var i = 0; i < produtos.length; i++) {
+                    if ((opcao === "acima" && precos[i] > valor) || (opcao === "abaixo" && precos[i] < valor)) {
+                        mensagem += `${i + 1}. ${produtos[i]} - R$${precos[i].toFixed(2)}<br>`;
+                    }
+                }
+            } else {
+                mensagem = "Por favor, insira um valor válido.";
+            }
+
+            document.getElementById('div_filtro').innerHTML = mensagem;
+        }
+    </script>
+</body>
+</html>

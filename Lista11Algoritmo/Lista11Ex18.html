@@ -12,25 +12,28 @@ d) Ao clicar em "Filtrar", deve exibir as músicas que estão dentro daquele int
 OBS: se o usuário informar "de 1 até 5", deve mostrar da primeira música -->
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Lista 11 Ex18</title>
 </head>
-<body>
- <label>Inserir música:</label>
- <input type="text" id="ipt_musica">
- <button onclick="cadastrarMusica()">Cadastrar</button> 
- <button onclick="exibirMusica()">Exibir</button>  
-  <br> <label>De</label> 
- <input type="number" id="ipt_inicio">
- <label>Até</label>
- <input type="number" id="ipt_final">
- <button onclick="filtrarMusica()">Filtrar</button> 
 
- <div id="div_mensagem"></div>
+<body>
+    <label>Inserir música:</label>
+    <input type="text" id="ipt_musica">
+    <button onclick="cadastrarMusica()">Cadastrar</button>
+    <button onclick="exibirMusica()">Exibir</button>
+    <br> <label>De</label>
+    <input type="number" id="ipt_inicio">
+    <label>Até</label>
+    <input type="number" id="ipt_final">
+    <button onclick="filtrarMusica()">Filtrar</button>
+
+    <div id="div_mensagem"></div>
 
 </body>
+
 </html>
 
 <script>
@@ -38,56 +41,36 @@ OBS: se o usuário informar "de 1 até 5", deve mostrar da primeira música -->
 
     function cadastrarMusica() {
         var musica = document.getElementById('ipt_musica').value;
-        var mensagem = "";
-
-        musicas.push(musica);
-
+        if (musica) {
+            musicas.push(musica);
+            document.getElementById('ipt_musica').value = ""; // Limpar campo de entrada após cadastrar
+        } else {
+            alert("Por favor, insira o nome de uma música.");
+        }
     }
 
     function exibirMusica() {
-        var musica = document.getElementById('ipt_musica').value;
         var mensagem = "";
-        var inicio = Number(ipt_inicio.value);
-        var final = Number(ipt_final.value);
-
-
-        for(var i = 0; i < musicas.length; i++){
-            
-             mensagem += `${musicas[i]} <br>`
+        for (var i = 0; i < musicas.length; i++) {
+            mensagem += `${musicas[i]} <br>`;
         }
-
-         div_mensagem.innerHTML = mensagem;
-        document.getElementById('ipt_musica').value;
-
+        document.getElementById('div_mensagem').innerHTML = mensagem;
     }
 
-    // function filtrarMusica() {
-    //     var inicio = Number(document.getElementById('ipt_inicio').value - 1);
-    //     var final = Number(document.getElementById('ipt_final').value - 1);
-    //     var mensagem = "";
-
-
-
-    // }
-
-      
     function filtrarMusica() {
-    var inicio = Number(document.getElementById('ipt_inicio').value) - 1; // Ajusta para índice do array
-    var final = Number(document.getElementById('ipt_final').value) - 1; // Ajusta para índice do array
-    var mensagem = "";
+        var inicio = Number(document.getElementById('ipt_inicio').value) - 1; // Ajusta para índice do array
+        var final = Number(document.getElementById('ipt_final').value) - 1; // Ajusta para índice do array
+        var mensagem = "";
 
-    if (inicio >= 0 && final < musicas.length && inicio <= final) {
-        for (var i = inicio; i <= final; i++) {
-            mensagem += `${i + 1}º Música: ${musicas[i]}<br>`;
+        if (inicio >= 0 && final < musicas.length && inicio <= final) {
+            for (var i = inicio; i <= final; i++) {
+                mensagem += `${i + 1}º Música: ${musicas[i]}<br>`;
+            }
+        } else {
+            mensagem = "Intervalo inválido.";
         }
-    } else {
-        mensagem = "Intervalo inválido.";
+
+        document.getElementById('div_mensagem').innerHTML = mensagem;
     }
-
-    document.getElementById('div_mensagem').innerHTML = mensagem;
-}
-
-
-
 
 </script>
