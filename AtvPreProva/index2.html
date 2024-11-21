@@ -1,0 +1,207 @@
+<script>
+    // 1. Estrutura do estoque (array de objetos)
+let estoque = [];
+
+// Função para cadastrar produto
+function cadastrarProduto(nome, codigo, quantidade) {
+    if (nome === "" || codigo === "" || quantidade <= 0) {
+        alert("Preencha todos os campos para registrar um novo produto");
+        return;
+    }
+
+    // Verificar se o produto já existe
+    let produtoExistente = estoque.find(produto => produto.codigo === codigo);
+    if (produtoExistente) {
+        alert("Código de produto já existente");
+    } else {
+        estoque.push({ nome, codigo, quantidade });
+        alert(`Produto ${nome} registrado com sucesso`);
+    }
+}
+
+// Função para reposição de estoque
+function reporEstoque(codigo, nome, quantidadeReposta) {
+    if (quantidadeReposta <= 0) {
+        alert("Quantidade inválida");
+        return;
+    }
+
+    let produto = estoque.find(produto => produto.codigo === codigo && produto.nome === nome);
+    if (produto) {
+        produto.quantidade += quantidadeReposta;
+        alert(`${quantidadeReposta}x do ${nome} foi reposto com sucesso`);
+    } else {
+        alert("Produto não identificado");
+    }
+}
+
+// Função para vender produto
+function venderProduto(codigo, nome, quantidadeVendida) {
+    if (quantidadeVendida <= 0) {
+        alert("Quantidade inválida");
+        return;
+    }
+
+    let produto = estoque.find(produto => produto.codigo === codigo && produto.nome === nome);
+    if (produto) {
+        if (produto.quantidade >= quantidadeVendida) {
+            produto.quantidade -= quantidadeVendida;
+            alert(`${quantidadeVendida}x do ${nome} foi vendido com sucesso`);
+            // Verificar se o produto precisa ser reposto
+            if (produto.quantidade < 10) {
+                alert(`${nome} precisa ser reposto URGENTE!`);
+            }
+        } else {
+            alert("Quantidade insuficiente em estoque");
+        }
+    } else {
+        alert("Produto não identificado");
+    }
+}
+
+// Função para exibir o relatório de estoque
+function exibirRelatorio() {
+    let categorias = 0;
+    let totalProdutos = 0;
+
+    estoque.forEach((produto, index) => {
+        totalProdutos += produto.quantidade;
+        categorias += 1;
+        let status = produto.quantidade < 10 ? "Precisa Repor" : "OK";
+        console.log(`Categoria ${index + 1} - Código: ${produto.codigo} | Produto: ${produto.nome} | Quantidade em Estoque: ${produto.quantidade} (${status})`);
+    });
+
+    console.log(`Seu estoque tem ${totalProdutos} produtos registrados, sendo ${categorias} categorias diferentes.`);
+}
+
+// Testando as funções
+cadastrarProduto("Arroz", "ABZ", 12);
+cadastrarProduto("Feijão", "ABPSC", 4);
+cadastrarProduto("Caneta", "123A", 75);
+cadastrarProduto("Caderno", "EHFD", 2);
+
+reporEstoque("ABZ", "Arroz", 5);
+venderProduto("ABPSC", "Feijão", 3);
+exibirRelatorio();
+
+</script>
+
+
+<script>
+    // 1. Estrutura do estoque (array de objetos)
+let estoque = [];
+
+// 2. Função para cadastrar produto
+function cadastrarProduto() {
+    // Recuperar dados de entrada diretamente (para simplificação, usaremos variáveis fixas)
+    let nome = prompt("Digite o nome do produto:");
+    let codigo = prompt("Digite o código do produto:");
+    let quantidade = parseInt(prompt("Digite a quantidade do produto:"));
+
+    if (nome === "" || codigo === "" || quantidade <= 0) {
+        alert("Preencha todos os campos para registrar um novo produto");
+        return;
+    }
+
+    // Verificar se o código do produto já existe no estoque
+    for (let i = 0; i < estoque.length; i++) {
+        if (estoque[i].codigo === codigo) {
+            alert("Código de produto já existente");
+            return;
+        }
+    }
+
+    // Adicionar produto ao estoque
+    estoque.push({ nome, codigo, quantidade });
+    alert(`Produto ${nome} registrado com sucesso`);
+}
+
+// 3. Função para reposição de estoque
+function reporEstoque() {
+    // Recuperar dados de entrada diretamente
+    let nome = prompt("Digite o nome do produto para reposição:");
+    let codigo = prompt("Digite o código do produto para reposição:");
+    let quantidadeReposta = parseInt(prompt("Digite a quantidade a ser reposta:"));
+
+    if (quantidadeReposta <= 0) {
+        alert("Quantidade inválida");
+        return;
+    }
+
+    let produtoEncontrado = false;
+
+    // Verificar se o produto existe e repor estoque
+    for (let i = 0; i < estoque.length; i++) {
+        if (estoque[i].codigo === codigo && estoque[i].nome === nome) {
+            estoque[i].quantidade += quantidadeReposta;
+            produtoEncontrado = true;
+            alert(`${quantidadeReposta}x do ${nome} foi reposto com sucesso`);
+            break;
+        }
+    }
+
+    if (!produtoEncontrado) {
+        alert("Produto não identificado");
+    }
+}
+
+// 4. Função para vender produto
+function venderProduto() {
+    // Recuperar dados de entrada diretamente
+    let nome = prompt("Digite o nome do produto para venda:");
+    let codigo = prompt("Digite o código do produto para venda:");
+    let quantidadeVendida = parseInt(prompt("Digite a quantidade a ser vendida:"));
+
+    if (quantidadeVendida <= 0) {
+        alert("Quantidade inválida");
+        return;
+    }
+
+    let produtoEncontrado = false;
+
+    // Verificar se o produto existe e se há estoque suficiente para venda
+    for (let i = 0; i < estoque.length; i++) {
+        if (estoque[i].codigo === codigo && estoque[i].nome === nome) {
+            if (estoque[i].quantidade >= quantidadeVendida) {
+                estoque[i].quantidade -= quantidadeVendida;
+                produtoEncontrado = true;
+                alert(`${quantidadeVendida}x do ${nome} foi vendido com sucesso`);
+
+                // Verificar se o produto precisa de reposição
+                if (estoque[i].quantidade < 10) {
+                    alert(`${nome} precisa ser reposto URGENTE!`);
+                }
+            } else {
+                alert("Quantidade insuficiente em estoque");
+            }
+            break;
+        }
+    }
+
+    if (!produtoEncontrado) {
+        alert("Produto não identificado");
+    }
+}
+
+// 5. Função para exibir relatório
+function exibirRelatorio() {
+    let categorias = 0;
+    let totalProdutos = 0;
+
+    for (let i = 0; i < estoque.length; i++) {
+        totalProdutos += estoque[i].quantidade;
+        categorias += 1;
+        let status = estoque[i].quantidade < 10 ? "Precisa Repor" : "OK";
+        console.log(`Categoria ${i + 1} - Código: ${estoque[i].codigo} | Produto: ${estoque[i].nome} | Quantidade em Estoque: ${estoque[i].quantidade} (${status})`);
+    }
+
+    console.log(`Seu estoque tem ${totalProdutos} produtos registrados, sendo ${categorias} categorias diferentes.`);
+}
+
+// Testando as funções com entradas de exemplo
+cadastrarProduto();
+reporEstoque();
+venderProduto();
+exibirRelatorio();
+
+</script>

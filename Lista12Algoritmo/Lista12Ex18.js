@@ -10,7 +10,7 @@ function verificarDistancia(num1, num2) {
     }
 }
 
-console.log(verificarDistancia(10, 14)); 
-console.log(verificarDistancia(10, 20)); 
-console.log(verificarDistancia(5, 9));   
-console.log(verificarDistancia(1, 6));   
+console.log(verificarDistancia(10, 14)); // Output: próximos
+console.log(verificarDistancia(10, 20)); // Output: distantes
+console.log(verificarDistancia(5, 9));   // Output: próximos
+console.log(verificarDistancia(1, 6));   // Output: distantes

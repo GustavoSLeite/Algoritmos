@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <label>Nome do Produto:</label>
+    <input type="text" id="ipt_nome">
+    <label>Código:</label>
+    <input type="text" id="ipt_codigo">
+    <label>Quantidade do Produto:</label>
+    <input type="text" id="ipt_qtd">
+    <button onclick="cadastrar()">Cadastrar Produto</button>
+    <button onclick="reporEstoque()">Repor Estoque</button>
+    <button onclick="venderProduto()">Vender Produto</button>
+    <button onclick="exibirRelatorio()">Exibir Relatório</button>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+    var estoque = [];
+    var codigos = [];
+
+    function cadastrar() {
+
+        var produto = document.getElementById('ipt_nome').value;
+        var codigo = document.getElementById('ipt_codigo').value;
+        var qtdProduto = Number(document.getElementById('ipt_qtd').value);
+        var mensagem = "";
+
+
+        // Verificar se os campos estão preenchidos corretamente
+        if (produto === "" || codigo === "") {
+
+            mensagem += `Preencha todos os campos para registrar um novo produto`
+
+        } else if(qtdProduto < 10){  // verificar se a qtd do produto é no mínimo 10
+
+            mensagem += `A quantidade inicial deve ser de pelo menos 10 unidades`
+
+        } else {
+            // Verificar se o código do produto já existe usando includes
+            if (codigos.includes(codigo)) {
+
+                mensagem += `Código de produto já existente`
+            } else{
+                 // Adicionar o código ao array codigosProduto
+                codigos.push(codigo);
+
+
+                 // Adicionar o produto no estoque usando um array
+                 estoque.push(produto,codigo,qtdProduto);
+                 mensagem += `Produto ${produto} registrado com sucesso!`
+            }
+
+        }
+
+
+
+
+
+        div_mensagem.innerHTML = mensagem;
+    }
+
+
+</script>
