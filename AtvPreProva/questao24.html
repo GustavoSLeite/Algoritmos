@@ -1,0 +1,149 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Controle de Pontos do Campeonato</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 20px; }
+        .hidden { display: none; }
+        .message { margin-top: 10px; }
+        .success { color: green; }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+    <!-- Tela de Cadastro de Jogadores -->
+    <div id="cadastroJogadores">
+        <h1>Cadastro de Jogadores</h1>
+        <label>Nome do Jogador:</label>
+        <input type="text" id="nomeJogador">
+        <button onclick="cadastrarNome()">Cadastrar Nome</button>
+        <button onclick="irParaRegistro()">Ir para Registro de Pontuações</button>
+        <div id="mensagemCadastro" class="message"></div>
+    </div>
+
+    <!-- Tela de Registro de Pontuações -->
+    <div id="registroPontuacoes" class="hidden">
+        <h1>Registro de Pontuações</h1>
+        <div id="jogadorAtual"></div>
+        <label>Pontuação:</label>
+        <input type="number" id="pontuacaoJogador">
+        <button onclick="registrarPontuacao()">Registrar Pontuação</button>
+        <button onclick="finalizarEExibirResultados()">Finalizar e Exibir Resultados</button>
+        <div id="mensagemPontuacoes" class="message"></div>
+    </div>
+
+    <!-- Tela de Resultados -->
+    <div id="resultados" class="hidden">
+        <h1>Resultados</h1>
+        <div id="resumoResultados"></div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
+<script>
+    var jogadores = [];
+var pontuacoes = [];
+var jogadorAtual = 0;
+
+function cadastrarNome() {
+    var nome = document.getElementById('nomeJogador').value;
+    var mensagem = "";
+
+    if (nome === "") {
+        mensagem = "Nome não pode estar vazio.";
+        mostrarMensagem('mensagemCadastro', mensagem, 'error');
+    } else if (jogadores.includes(nome)) {
+        mensagem = "Nome já registrado.";
+        mostrarMensagem('mensagemCadastro', mensagem, 'error');
+    } else {
+        jogadores.push(nome);
+        mensagem = `Jogador ${nome} registrado com sucesso.`;
+        mostrarMensagem('mensagemCadastro', mensagem, 'success');
+    }
+}
+
+function irParaRegistro() {
+    if (jogadores.length === 0) {
+        mostrarMensagem('mensagemCadastro', "Nenhum jogador cadastrado.", 'error');
+    } else {
+        document.getElementById('cadastroJogadores').style.display = 'none';
+        document.getElementById('registroPontuacoes').style.display = 'block';
+        atualizarJogadorAtual();
+    }
+}
+
+function atualizarJogadorAtual() {
+    document.getElementById('jogadorAtual').innerText = `${jogadores[jogadorAtual]} - (${jogadorAtual + 1}/${jogadores.length})`;
+}
+
+function registrarPontuacao() {
+    var pontuacao = Number(document.getElementById('pontuacaoJogador').value);
+    var mensagem = "";
+
+    if (isNaN(pontuacao) || pontuacao < 0) {
+        mensagem = "Pontuação inválida.";
+        mostrarMensagem('mensagemPontuacoes', mensagem, 'error');
+    } else {
+        pontuacoes[jogadorAtual] = pontuacao;
+        mensagem = "Pontuação registrada com sucesso.";
+        mostrarMensagem('mensagemPontuacoes', mensagem, 'success');
+        jogadorAtual++;
+        if (jogadorAtual < jogadores.length) {
+            atualizarJogadorAtual();
+        }
+    }
+}
+
+function finalizarEExibirResultados() {
+    if (jogadorAtual < jogadores.length) {
+        mostrarMensagem('mensagemPontuacoes', "Ainda há jogadores sem pontuação registrada.", 'error');
+    } else {
+        document.getElementById('registroPontuacoes').style.display = 'none';
+        document.getElementById('resultados').style.display = 'block';
+        exibirResultados();
+    }
+}
+
+function exibirResultados() {
+    var totalPontos = pontuacoes.reduce((a, b) => a + b, 0);
+    var mensagem = `Total: ${totalPontos} pontos<br><br>Jogadores (${jogadores.length}):<br>`;
+    var maiorPontuacao = 0;
+    var vencedores = [];
+    var bonificados = 0;
+
+    for (var i = 0; i < jogadores.length; i++) {
+        var percentual = ((pontuacoes[i] / totalPontos) * 100).toFixed(2);
+        var bonus = (pontuacoes[i] % 3 === 0 && pontuacoes[i] % 5 === 0) ? " (BONIFICADO)" : "";
+        if (bonus) bonificados++;
+        mensagem += `${i + 1} - ${jogadores[i]}, ${pontuacoes[i]} pontos, ${percentual}% do total${bonus}<br>`;
+        if (pontuacoes[i] > maiorPontuacao) {
+            maiorPontuacao = pontuacoes[i];
+            vencedores = [jogadores[i]];
+        } else if (pontuacoes[i] === maiorPontuacao) {
+            vencedores.push(jogadores[i]);
+        }
+    }
+
+    if (vencedores.length === 1) {
+        mensagem += `<br>Vencedor: ${vencedores[0]}, ${maiorPontuacao} pontos`;
+    } else {
+        mensagem += `<br>Empate entre: ${vencedores.join(', ')}, ${maiorPontuacao} pontos cada`;
+    }
+
+    mensagem += `<br><br>Jogadores Bonificados: ${bonificados}`;
+    document.getElementById('resumoResultados').innerHTML = mensagem;
+}
+
+function mostrarMensagem(elementId, mensagem, tipo) {
+    var divMensagem = document.getElementById(elementId);
+    divMensagem.className = 'message ' + tipo;
+    divMensagem.innerHTML = mensagem;
+    setTimeout(function() {
+        divMensagem.innerHTML = '';
+    }, 5000); // Remove a mensagem após 5 segundos
+}
+
+</script>
