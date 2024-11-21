@@ -28,6 +28,12 @@
     var estoque = [];
     var codigos = [];
 
+
+    // - Cadastro de Produto: O sistema deve cadastrar o produto, registrando seu nome, código e quantidade em estoque.
+    // Caso os campos estejam todos preenchidos, a quantidade seja acima do mínimo e o código do produto ainda não exista no estoque, 
+    // exiba "Produto NOME_DO_PRODUTO registrado com sucesso", mas caso contrário, exiba "Preencha todos os campos para registrar um novo produto" ou 
+    // "Código de produto já existente", de acordo com a validação.
+
     function cadastrar() {
 
         var produto = document.getElementById('ipt_nome').value;
@@ -41,7 +47,7 @@
 
             mensagem += `Preencha todos os campos para registrar um novo produto`
 
-        } else if(qtdProduto < 10){  // verificar se a qtd do produto é no mínimo 10
+        } else if (qtdProduto < 10) {  // verificar se a qtd do produto é no mínimo 10
 
             mensagem += `A quantidade inicial deve ser de pelo menos 10 unidades`
 
@@ -50,14 +56,14 @@
             if (codigos.includes(codigo)) {
 
                 mensagem += `Código de produto já existente`
-            } else{
-                 // Adicionar o código ao array codigosProduto
+            } else {
+                // Adicionar o código ao array codigosProduto
                 codigos.push(codigo);
 
 
-                 // Adicionar o produto no estoque usando um array
-                 estoque.push(produto,codigo,qtdProduto);
-                 mensagem += `Produto ${produto} registrado com sucesso!`
+                // Adicionar o produto no estoque usando um array
+                estoque.push(produto, codigo, qtdProduto);
+                mensagem += `Produto ${produto} registrado com sucesso!`
             }
 
         }
@@ -68,6 +74,101 @@
 
         div_mensagem.innerHTML = mensagem;
     }
+
+
+    // - Reposição de Estoque: O sistema deve processar as reposições, aumentando a quantidade em estoque do produto especificado. 
+    // Cada reposição envolve o código e o nome do produto, além da quantidade reposta. 
+    // Caso o código e nome sejam identificados corretamente e a quantidade seja um acima de 0,
+    //  exiba "9999x do NOME_DO_PRODUTO foi reposto com sucesso", mas caso contrário, exiba "Produto não identificado" ou "Quantidade inválida", de acordo com a validação.
+
+
+
+    function reporEstoque() {
+        var produto = document.getElementById('ipt_nome').value;
+        var codigo = document.getElementById('ipt_codigo').value;
+        var qtdProduto = Number(document.getElementById('ipt_qtd').value);
+        var mensagem = "";
+
+        if (!codigos.includes(codigo)) {
+            mensagem += "Produto não identificado.";
+        } else if (qtdProduto <= 0 || isNaN(qtdProduto)) {
+            mensagem += "Quantidade inválida!";
+        } else {
+            for (var i = 0; i < estoque.length; i++) {
+                if (estoque[i].codigo === codigo && estoque[i].nome === produto) {
+                    estoque[i].quantidade += qtdProduto;
+                    mensagem += `${qtdProduto}x do ${produto} foi reposto com sucesso.`;
+                    break; // Opcional, mas eficiente
+                }
+            }
+        }
+
+        document.getElementById('div_mensagem').innerHTML = mensagem;
+        exibirRelatorio();
+    }
+
+
+
+    //     - Venda de Produtos: O sistema deve ser capaz de processar uma quantidade indefinida de vendas, reduzindo a quantidade de produtos no estoque.
+    //      Cada venda envolve o código e o nome do produto, além da quantidade vendida. Caso o código e nome sejam identificados corretamente e 
+    //      a quantidade em estoque seja suficiente para a venda, exiba "9999x do NOME_DO_PRODUTO foi vendido com sucesso", mas caso contrário,
+    //       exiba "Produto não identificado" ou "Quantidade inválida", de acordo com a validação. 
+    // Ao final de cada venda, o sistema deve verificar se algum produto ficou abaixo da quantidade mínima. 
+    // Caso isso ocorra, o sistema deve emitir uma mensagem de alerta para reposição urgente daquele produto.
+
+
+
+    function venderProduto() {
+        var produto = document.getElementById('ipt_nome').value;
+        var codigo = document.getElementById('ipt_codigo').value;
+        var qtdProduto = Number(document.getElementById('ipt_qtd').value);
+        var mensagem = "";
+
+        if (!codigos.includes(codigo)) {
+            mensagem += "Produto não identificado.";
+        } else if (qtdProduto <= 0 || isNaN(qtdProduto)) {
+            mensagem += "Quantidade inválida.";
+        } else {
+            for (var i = 0; i < estoque.length; i++) {
+                if (estoque[i].codigo === codigo && estoque[i].nome === produto) {
+                    if (estoque[i].quantidade >= qtdProduto) {
+                        estoque[i].quantidade -= qtdProduto;
+                        mensagem += `${qtdProduto}x do ${produto} foi vendido com sucesso.`;
+                        if (estoque[i].quantidade < 10) {
+                            mensagem += ` Alerta: ${produto} precisa ser reposto urgentemente.`;
+                        }
+                        break;
+                    } else {
+                        mensagem += "Quantidade em estoque insuficiente.";
+                    }
+                }
+            }
+        }
+
+        document.getElementById('div_mensagem').innerHTML = mensagem;
+        exibirRelatorio();
+    }
+
+    function exibirRelatorio() {
+        var relatorio = "Relatório de Estoque:<br>";
+        for (var i = 0; i < estoque.length; i++) {
+            var status = estoque[i].quantidade >= 10 ? "OK" : "Precisa Repor";
+            relatorio += `Código: ${estoque[i].codigo} | Produto: ${estoque[i].nome} | Quantidade em Estoque: ${estoque[i].quantidade} (${status})<br>`;
+        }
+        relatorio += `Seu estoque tem ${estoque.length} produtos registrados.`;
+        document.getElementById('relatorio').innerHTML = relatorio;
+    }
+
+    function mostrarMensagem(mensagem, tipo) {
+        var divMensagem = document.getElementById('div_mensagem');
+        divMensagem.className = 'message ' + tipo;
+        divMensagem.innerHTML = mensagem;
+        setTimeout(function () {
+            divMensagem.innerHTML = '';
+        }, 5000); // Remove a mensagem após 5 segundos
+    }
+
+
 
 
 </script>
