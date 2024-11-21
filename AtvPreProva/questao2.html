@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    Nome do Jogador: <input type="text" id="ipt_nome">
+    <button onclick="cadastrarNomeJogador()">Cadastrar Nome</button>
+    <button onclick="irParaRegistro()"> Ir para Registro de Pontuações</button>
+
+    <div id="div_mensagem"></div>
+</body>
+
+</html>
+
+<script>
+
+    var jogadores = [];
+
+    function cadastrarNomeJogador() {
+
+        var nomeJogador = ipt_nome.value;
+        var mensagem = "";
+
+        if (nomeJogador == "") {
+
+            mensagem += `Nome não pode estar vazio!`
+        } else if (jogadores.includes(nomeJogador)) {
+
+            mensagem += `Nome já registrado!`
+        } else {
+
+            jogadores.push(nomeJogador);
+            mensagem = `Jogador ${nomeJogador} registrado com sucesso.`
+        }
+
+        div_mensagem.innerHTML = mensagem;
+    }
+</script>
